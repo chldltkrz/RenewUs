@@ -20,7 +20,7 @@ class ProfileCard extends StatelessWidget {
     return Center(
       // 중앙에 배치
       child: Container(
-        width: 350, // 너비 설정
+        width: 350,
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft, // 그라데이션 시작점
@@ -34,7 +34,7 @@ class ProfileCard extends StatelessWidget {
             color: theme.primaryColor, // 테두리 색상 (기본 색상 사용)
             width: 1.0,
           ),
-          borderRadius: BorderRadius.circular(12), // 둥근 모서리
+          borderRadius: BorderRadius.circular(12),
         ),
         child: Card(
           color: Colors.transparent, // 카드 배경을 투명하게

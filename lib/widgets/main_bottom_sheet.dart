@@ -103,7 +103,7 @@ class MainBottomSheet extends StatelessWidget {
             icon,
             color: isActive
                 ? Color(0xFF252526) // 활성화된 아이콘 색상 (진하게)
-                : Color(0xFFA7A69A), // 비활성화된 아이콘 색상 (회색)
+                : Color(0xFFA7A69A), // 비활성화된 아이콘 색상
             size: 28, // 아이콘 크기 조정
           ),
         ),
@@ -112,9 +112,9 @@ class MainBottomSheet extends StatelessWidget {
           style: TextStyle(
             color: isActive
                 ? Color(0xFF252526) // 활성화된 텍스트 색상 (진하게)
-                : Color(0xFF999795), // 비활성화된 텍스트 색상 (회색)
-            fontSize: 10, // 텍스트 크기 줄임
-            fontWeight: FontWeight.w600, // 텍스트를 좀 더 두껍게
+                : Color(0xFF999795), // 비활성화된 텍스트 색상
+            fontSize: 10,
+            fontWeight: FontWeight.w600,
           ),
         ),
       ],

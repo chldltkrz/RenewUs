@@ -12,14 +12,14 @@ class _MyPageState extends State<MyPage> {
   bool isHomeActive = false;
   bool isPersonalityTestActive = false;
   bool isRecommendedCounselorActive = false;
-  bool isConsultationActive = false; // 상담 아이콘 활성화 상태 추가
+  bool isConsultationActive = false;
 
   void _onConsultationPressed() {
     setState(() {
       isHomeActive = false;
       isPersonalityTestActive = false;
       isRecommendedCounselorActive = false;
-      isConsultationActive = true; // 상담 아이콘을 활성화 상태로 변경
+      isConsultationActive = true;
     });
     Navigator.pushNamed(context, '/consultationPage');
   }
@@ -135,7 +135,7 @@ class _MyPageState extends State<MyPage> {
         isHomeActive: isHomeActive,
         isPersonalityTestActive: isPersonalityTestActive,
         isRecommendedCounselorActive: isRecommendedCounselorActive,
-        isConsultationActive: isConsultationActive, // 상담 아이콘 활성화 상태 추가
+        isConsultationActive: isConsultationActive,
       ),
     );
   }
@@ -225,12 +225,12 @@ class _MyPageState extends State<MyPage> {
                       Navigator.pushNamed(context, '/editProfile');
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF6C4B12), // 색상 변경
+                      backgroundColor: Color(0xFF6C4B12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
                       elevation: 0, // 그림자x
-                      padding: EdgeInsets.symmetric(vertical: 12), // 높이 줄이기
+                      padding: EdgeInsets.symmetric(vertical: 12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 25, right: 12),
@@ -263,13 +263,13 @@ class _MyPageState extends State<MyPage> {
                       Navigator.pushNamed(context, '/charge');
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF6C4B12), // 색상 변경
+                      backgroundColor: Color(0xFF6C4B12),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
                       elevation: 0, // 그림자x
 
-                      padding: EdgeInsets.symmetric(vertical: 12), // 높이 줄이기
+                      padding: EdgeInsets.symmetric(vertical: 12),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 25, right: 12),

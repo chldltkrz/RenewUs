@@ -40,6 +40,14 @@ class MainBottomSheet extends StatelessWidget {
             width: 1.0, // 얇은 선
           ),
         ),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.1), // 그림자 색상 (약간 투명한 검정색)
+            blurRadius: 10, // 블러 효과 (그림자 퍼지는 정도)
+            spreadRadius: 2, // 그림자의 확장 정도
+            offset: Offset(0, 4), // 그림자의 위치 (아래쪽으로 4px 이동)
+          ),
+        ],
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start, // 아이콘과 이름을 위쪽으로 붙임

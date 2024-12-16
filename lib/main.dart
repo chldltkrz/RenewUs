@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:renewus/themes/app_themes.dart'; // AppTheme 임포트
-import 'package:renewus/pages/my_page.dart'; // MyPage 임포트
+import 'package:renewus/themes/app_themes.dart'; // AppTheme
+import 'package:renewus/pages/my_page.dart'; // MyPage
 import 'package:renewus/pages/my_review_page.dart'; // 나의 리뷰 화면
 import 'package:renewus/pages/counselor_profile_page.dart'; // 상담사 프로필 화면
 import 'package:renewus/pages/category_main_page.dart'; // 카테고리 화면

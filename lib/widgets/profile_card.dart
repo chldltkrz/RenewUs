@@ -14,67 +14,141 @@ class ProfileCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // 현재 테마 가져오기
     final theme = Theme.of(context);
 
-    return Center(
-      // 중앙에 배치
-      child: Container(
-        width: 350,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft, // 그라데이션 시작점
-            end: Alignment.bottomRight, // 그라데이션 끝점
-            colors: [
-              theme.primaryColor, // 테마의 기본 색상 사용
-              theme.colorScheme.secondary, // 테마의 보조 색상 사용
-            ],
-          ),
-          border: Border.all(
-            color: theme.primaryColor, // 테두리 색상 (기본 색상 사용)
-            width: 1.0,
-          ),
-          borderRadius: BorderRadius.circular(12),
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.fromARGB(255, 250, 208, 128),
+            Color(0xFFE7A137),
+          ],
         ),
-        child: Card(
-          color: Colors.transparent, // 카드 배경을 투명하게
-          elevation: 2,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  '사용자: $username',
-                  style: TextStyle(
-                    color: theme.textTheme.bodyLarge?.color, // 텍스트 색상
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
+                CircleAvatar(
+                  backgroundImage:
+                      NetworkImage('https://via.placeholder.com/80'),
+                  radius: 40,
                 ),
-                SizedBox(height: 8),
-                Text(
-                  'ID: $userId',
-                  style: TextStyle(
-                    color: theme.textTheme.bodyMedium?.color, // 텍스트 색상
-                    fontSize: 16,
-                  ),
-                ),
-                SizedBox(height: 8),
-                Text(
-                  '잔액: $balance',
-                  style: TextStyle(
-                    color: theme.textTheme.bodyMedium?.color
-                        ?.withOpacity(0.7), // 텍스트 색상
-                    fontSize: 16,
+                SizedBox(width: 16),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        username,
+                        style: theme.textTheme.displayMedium?.copyWith(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 20,
+                        ),
+                      ),
+                      Text(
+                        userId,
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          color: theme.textTheme.bodyMedium?.color,
+                        ),
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        '충전 잔액: $balance',
+                        style: theme.textTheme.bodyMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.grey[600],
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
             ),
-          ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/editProfile');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF6C4B12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      elevation: 0,
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '내 정보',
+                          style: TextStyle(
+                            color: Color(0xFFFFBC2D),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        // SizedBox(width: 8),
+                        // Icon(
+                        //   Icons.arrow_forward_ios,
+                        //   color: Color(0xFFE7A137),
+                        //   size: 18,
+                        // ),
+                      ],
+                    ),
+                  ),
+                ),
+                SizedBox(width: 16),
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/charge');
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF6C4B12),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30),
+                      ),
+                      elevation: 0,
+                      padding: EdgeInsets.symmetric(vertical: 12),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          '충전하기',
+                          style: TextStyle(
+                            color: Color(0xFFFFBC2D),
+                            fontSize: 16,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                        // SizedBox(width: 8),
+                        // Icon(
+                        //   Icons.arrow_forward_ios,
+                        //   color: Color(0xFFE7A137),
+                        //   size: 18,
+                        // ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

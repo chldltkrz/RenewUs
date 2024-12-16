@@ -30,12 +30,12 @@ class AppTheme {
     textTheme: TextTheme(
       displayLarge: TextStyle(
         color: textColor,
-        fontSize: 28.0, // 제목 크기
+        fontSize: 22.0, // 제목 크기
         fontWeight: FontWeight.bold,
       ),
       displayMedium: TextStyle(
         color: textColor,
-        fontSize: 24.0, // 작은 제목 크기
+        fontSize: 18.0, // 작은 제목 크기
         fontWeight: FontWeight.w600,
       ),
       bodyLarge: TextStyle(
@@ -54,7 +54,7 @@ class AppTheme {
         foregroundColor: Colors.white, // 버튼 글자 색상
         // foregroundColor: Color(0xFF473933), // 버튼 글자 색상
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30), // 둥근 버튼 모서리
+          borderRadius: BorderRadius.circular(30),
         ),
         padding: EdgeInsets.symmetric(vertical: 12),
       ),
@@ -64,7 +64,7 @@ class AppTheme {
         foregroundColor: Color(0xFF6C4B12), // 텍스트 버튼 색상
         padding: EdgeInsets.symmetric(vertical: 12),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30), // 둥근 버튼 모서리
+          borderRadius: BorderRadius.circular(30),
         ),
       ),
     ),
@@ -74,7 +74,7 @@ class AppTheme {
         side: BorderSide(color: Color(0xFF6C4B12), width: 2), // 아웃라인 색상
         padding: EdgeInsets.symmetric(vertical: 12),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(30), // 둥근 버튼 모서리
+          borderRadius: BorderRadius.circular(30),
         ),
       ),
     ),

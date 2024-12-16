@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:renewus/themes/app_themes.dart'; // AppTheme 임포트
+import 'package:renewus/themes/app_themes.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -31,11 +31,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           },
           color: Color(0xFFA7A69A), // AppTheme 색상 적용
         ),
-        // 마이페이지 아이콘
+
         IconButton(
           icon: Icon(Icons.person),
           onPressed: () {
-            // 마이페이지로 이동
             Navigator.pushNamed(context, '/myPage');
           },
           color: Color(0xFFA7A69A), // AppTheme 색상 적용

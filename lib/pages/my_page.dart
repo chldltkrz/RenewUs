@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:renewus/widgets/custom_appbar.dart';
 import 'package:renewus/widgets/custom_list_tile.dart';
+import 'package:renewus/widgets/profile_card.dart';
 import 'package:renewus/widgets/main_bottom_sheet.dart';
 
 class MyPage extends StatefulWidget {
+  final List<String> favoritedCounselors;
+
+  // favoritedCounselors를 네임드 파라미터로 받음
+  MyPage({Key? key, required this.favoritedCounselors}) : super(key: key);
+
   @override
   _MyPageState createState() => _MyPageState();
 }
@@ -65,7 +71,11 @@ class _MyPageState extends State<MyPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              _buildProfileCard(context),
+              ProfileCard(
+                username: '이노브',
+                userId: '@innowave',
+                balance: '20,000원',
+              ),
               SizedBox(height: 26),
               CustomListTile(
                 title: '찜한 상담사',
@@ -136,169 +146,6 @@ class _MyPageState extends State<MyPage> {
         isPersonalityTestActive: isPersonalityTestActive,
         isRecommendedCounselorActive: isRecommendedCounselorActive,
         isConsultationActive: isConsultationActive,
-      ),
-    );
-  }
-
-  Widget _buildProfileCard(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0xFFF7B942),
-            Color(0xFFE7A137),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  backgroundImage:
-                      NetworkImage('https://via.placeholder.com/80'),
-                  radius: 40,
-                ),
-                SizedBox(width: 16),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        '이노브',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF382E18),
-                        ),
-                      ),
-                      // SizedBox(height: 1),
-                      Text(
-                        '@innowave',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Color(0xFF6C4B12),
-                        ),
-                      ),
-                      SizedBox(height: 4),
-                      Text(
-                        '충전 잔액: 20,000원',
-                        style: TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFFE9E8E4),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                /* Align(
-                  alignment: Alignment.topRight,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/editProfile');
-                    },
-                    child: Text(
-                      '프로필 수정',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),*/
-              ],
-            ),
-            SizedBox(height: 20),
-            Row(
-              children: [
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/editProfile');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF6C4B12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      elevation: 0, // 그림자x
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 25, right: 12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            '내 정보',
-                            style: TextStyle(
-                              color: Color(0xFFE7A137),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Spacer(),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            color: Color(0xFFE7A137),
-                            size: 18,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(width: 16),
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/charge');
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF6C4B12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      elevation: 0, // 그림자x
-
-                      padding: EdgeInsets.symmetric(vertical: 12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 25, right: 12),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            '충전하기',
-                            style: TextStyle(
-                              color: Color(0xFFE7A137),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
-                          Spacer(),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            color: Color(0xFFE7A137),
-                            size: 18,
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:renewus/themes/app_themes.dart'; // AppTheme 임포트
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String title;
@@ -16,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         style: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w600,
-          color: Colors.black.withOpacity(0.85),
+          color: AppTheme.primaryColor.withOpacity(0.85), // AppTheme 색상 적용
         ),
       ),
       centerTitle: true, // title을 가운데로 위치시킴
@@ -28,6 +29,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             // 알림 클릭시 처리할 내용
             print("알림 클릭됨");
           },
+          color: Color(0xFFA7A69A), // AppTheme 색상 적용
         ),
         // 마이페이지 아이콘
         IconButton(
@@ -36,9 +38,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             // 마이페이지로 이동
             Navigator.pushNamed(context, '/myPage');
           },
+          color: Color(0xFFA7A69A), // AppTheme 색상 적용
         ),
       ],
-      backgroundColor: Color(0xFFFCF8F7), // AppBar 배경색
+      backgroundColor: AppTheme.backgroundColor, // AppTheme 배경색 적용
       elevation: 0, // 그림자 제거
     );
   }

@@ -27,7 +27,7 @@ class CustomListTile extends StatelessWidget {
                 Icon(
                   icon,
                   size: 24.0,
-                  color: AppTheme.primaryColor.withOpacity(0.95),
+                  color: AppTheme.primaryColor.withOpacity(0.85),
                 ), // AppTheme에서 색상 참조
                 SizedBox(width: 16),
                 Text(
@@ -40,8 +40,7 @@ class CustomListTile extends StatelessWidget {
             Icon(
               Icons.arrow_forward_ios,
               size: 18,
-              color:
-                  AppTheme.primaryColor.withOpacity(0.85), // AppTheme에서 색상 참조
+              color: AppTheme.primaryColor.withOpacity(0.5), // AppTheme에서 색상 참조
             ),
           ],
         ),

@@ -4,6 +4,11 @@ import 'package:renewus/widgets/custom_list_tile.dart';
 import 'package:renewus/widgets/main_bottom_sheet.dart';
 
 class MyPage extends StatefulWidget {
+  final List<String> favoritedCounselors;
+
+  // favoritedCounselors를 네임드 파라미터로 받음
+  MyPage({Key? key, required this.favoritedCounselors}) : super(key: key);
+
   @override
   _MyPageState createState() => _MyPageState();
 }
@@ -179,7 +184,6 @@ class _MyPageState extends State<MyPage> {
                           color: Color(0xFF382E18),
                         ),
                       ),
-                      // SizedBox(height: 1),
                       Text(
                         '@innowave',
                         style: TextStyle(
@@ -199,21 +203,6 @@ class _MyPageState extends State<MyPage> {
                     ],
                   ),
                 ),
-                /* Align(
-                  alignment: Alignment.topRight,
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, '/editProfile');
-                    },
-                    child: Text(
-                      '프로필 수정',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-                ),*/
               ],
             ),
             SizedBox(height: 20),
@@ -229,7 +218,7 @@ class _MyPageState extends State<MyPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      elevation: 0, // 그림자x
+                      elevation: 0,
                       padding: EdgeInsets.symmetric(vertical: 12),
                     ),
                     child: Padding(
@@ -267,8 +256,7 @@ class _MyPageState extends State<MyPage> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30),
                       ),
-                      elevation: 0, // 그림자x
-
+                      elevation: 0,
                       padding: EdgeInsets.symmetric(vertical: 12),
                     ),
                     child: Padding(

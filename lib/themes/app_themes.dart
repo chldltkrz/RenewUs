@@ -24,7 +24,7 @@ class AppTheme {
         fontFamily: 'Poppins',
       ),
       iconTheme: IconThemeData(
-        color: primaryColor, // 아이콘 색상 (기본값)
+        color: Color(0xFFA7A69A), // 아이콘 색상 (기본값)
       ),
     ),
     textTheme: TextTheme(
@@ -51,17 +51,18 @@ class AppTheme {
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         backgroundColor: Color(0xFFF4BA3E), // 버튼 배경 색상
-        foregroundColor: Color(0xFF473933), // 버튼 글자 색상
+        foregroundColor: Colors.white, // 버튼 글자 색상
+        // foregroundColor: Color(0xFF473933), // 버튼 글자 색상
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30), // 둥근 버튼 모서리
         ),
-        padding: EdgeInsets.symmetric(vertical: 14),
+        padding: EdgeInsets.symmetric(vertical: 12),
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: Color(0xFF6C4B12), // 텍스트 버튼 색상
-        padding: EdgeInsets.symmetric(vertical: 14),
+        padding: EdgeInsets.symmetric(vertical: 12),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30), // 둥근 버튼 모서리
         ),
@@ -71,7 +72,7 @@ class AppTheme {
       style: OutlinedButton.styleFrom(
         foregroundColor: Color(0xFF6C4B12),
         side: BorderSide(color: Color(0xFF6C4B12), width: 2), // 아웃라인 색상
-        padding: EdgeInsets.symmetric(vertical: 14),
+        padding: EdgeInsets.symmetric(vertical: 12),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(30), // 둥근 버튼 모서리
         ),

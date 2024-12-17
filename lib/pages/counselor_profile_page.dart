@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:renewus/pages/counselor_reservation_page/counselor_reservation_page.dart';
 import 'package:renewus/widgets/custom_appbar.dart'; // 앱바 불러오기
 import 'package:renewus/widgets/counselor_profile_bottom_sheet.dart'; // 바텀시트 불러오기
-import 'package:renewus/pages/counselor_reservation_page.dart'; // 예약 페이지로 이동
 import 'package:renewus/pages/counselor_review.dart'; // 리뷰 페이지 이동
 import 'package:renewus/themes/app_themes.dart';
 

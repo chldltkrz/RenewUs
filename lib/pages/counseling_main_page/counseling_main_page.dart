@@ -29,7 +29,8 @@ class CounselingMainPage extends StatelessWidget {
         title: const Text('예약 확정된 상담사'),
         subtitle: const Text('날짜: 2024년 12월 11일\n시간: 22:00\n이용시간: 30분'),
         trailing: ElevatedButton(
-          style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF690AC7)),
+          style: ElevatedButton.styleFrom(
+              backgroundColor: const Color(0xFF690AC7)),
           onPressed: () {},
           child: const Text('입장', style: TextStyle(color: Colors.white)),
         ),

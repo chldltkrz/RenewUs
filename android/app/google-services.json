@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "364450966535",
+    "project_id": "flutter-renewus",
+    "storage_bucket": "flutter-renewus.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:364450966535:android:49101e8678a81827534ea2",
+        "android_client_info": {
+          "package_name": "com.example.renewus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBIJqCvPSGAAnqCG8_DceOywujbd7LDBa0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

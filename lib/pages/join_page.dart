@@ -14,7 +14,7 @@ class JoinPage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/renewus_logo.png', height: 100), // 로고 표시
+            Image.asset('assets/renewus_logo.jpeg', height: 100), // 로고 표시
             const SizedBox(height: 20),
             _buildButton(context, '이메일로 가입하기', () {
               ref.read(pageProvider.notifier).setPage('join_detail');
@@ -31,7 +31,8 @@ class JoinPage extends ConsumerWidget {
     );
   }
 
-  Widget _buildButton(BuildContext context, String text, VoidCallback onPressed) {
+  Widget _buildButton(
+      BuildContext context, String text, VoidCallback onPressed) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 8),
       width: 250,

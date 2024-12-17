@@ -47,7 +47,12 @@ class ReviewCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('상담사: $counselorName'),
+                Text(
+                  '상담사: $counselorName',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 Text('날짜: $date ($time)'),
                 Text('이용시간: $duration'),
                 SizedBox(height: 8),

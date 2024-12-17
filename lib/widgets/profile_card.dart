@@ -40,7 +40,7 @@ class ProfileCard extends StatelessWidget {
               children: [
                 CircleAvatar(
                   backgroundImage:
-                      NetworkImage('https://via.placeholder.com/80'),
+                      NetworkImage('https://i.pravatar.cc/80?img=24'),
                   radius: 40,
                 ),
                 SizedBox(width: 16),

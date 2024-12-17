@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:renewus/themes/app_themes.dart'; // AppTheme
-import 'package:renewus/pages/my_page.dart'; // MyPage
-import 'package:renewus/pages/my_review_page.dart'; // 나의 리뷰 화면
-import 'package:renewus/pages/counselor_profile_page.dart'; // 상담사 프로필 화면
-import 'package:renewus/pages/category_main_page.dart'; // 카테고리 화면
-import 'package:renewus/pages/counselor_list_page.dart'; // 상담사 리스트 화면
-import 'package:renewus/pages/recommended_counselor_page.dart'; // 추천 상담사 화면
-import 'package:renewus/pages/counselor_reservation_page.dart';
-import 'package:renewus/pages/counselor_review.dart';
-import 'package:renewus/pages/favorited_counselors.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'join_page.dart';
 
 void main() {
-  runApp(MyApp());
-}
+  runApp(
+    const ProviderScope( // Riverpod을 위한 ProviderScope 설정
+      child: MyApp(),
+    ),
+  );
 
 class MyApp extends StatelessWidget {
   final List<String> favoritedCounselors = [];
@@ -20,30 +16,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'RenewUs',
+
+      title: 'RenewUS',
       theme: AppTheme.lightTheme, // 테마 적용
-      initialRoute: '/', // 앱의 초기 화면
-      routes: {
-        '/': (context) => MyPage(
-            favoritedCounselors: favoritedCounselors), // MyPage를 앱의 초기 화면으로 설정
-        '/myPage': (context) =>
-            MyPage(favoritedCounselors: favoritedCounselors),
-        '/myReview': (context) => MyReviewPage(),
-        '/counselorProfile': (context) {
-          final args = ModalRoute.of(context)?.settings.arguments
-              as Map<String, dynamic>?;
-          final counselorName = args != null ? args['name'] : '알 수 없음';
-          return CounselorProfilePage(
-              counselorName: counselorName,
-              favoritedCounselors: favoritedCounselors);
-        },
-        '/counselorReview': (context) => CounselorReview(),
-        '/counselorReservation': (context) => CounselorReservationPage(),
-        '/categoryMain': (context) => CategoryMainPage(),
-        '/counselorList': (context) => CounselorListPage(),
-        '/recommendedCounselor': (context) => RecommendedCounselorPage(),
-        '/favoritedCounselors': (context) => FavoritedCounselors(),
-      },
+      home: const JoinPage(), // 시작 페이지
+
     );
   }
 }

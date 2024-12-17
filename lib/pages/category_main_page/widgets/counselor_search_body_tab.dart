@@ -8,8 +8,8 @@ class CounselorSearchBodyTab extends ConsumerWidget {
     final mainTabIndex = ref.watch(categoryMainPageViewModel);
     final sortingIndex = ref.watch(sortingViewModel);
 
-    return Consumer(builder: (context, ref, child) {
-      return Column(
+    return SafeArea(
+      child: Column(
         children: [
           // Main Tab Filter Buttons
           Container(
@@ -50,8 +50,8 @@ class CounselorSearchBodyTab extends ConsumerWidget {
             ),
           ),
         ],
-      );
-    });
+      ),
+    );
   }
 
   // Main Filter Button
@@ -104,7 +104,6 @@ class CounselorSearchBodyTab extends ConsumerWidget {
 
   // GridView that changes based on Sorting Index
   Widget gridViewForSorting(int sortingIndex) {
-    // Sample data placeholder sorted based on the index
     List<String> sortedData = ['경력순', '가격순', '바로상담가능순', '오프라인 가까운순'];
     String currentSorting = sortedData[sortingIndex];
 
@@ -116,11 +115,11 @@ class CounselorSearchBodyTab extends ConsumerWidget {
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
       ),
-      itemCount: 6, // Sample count
+      itemCount: 6,
       itemBuilder: (context, index) {
         return Container(
           decoration: BoxDecoration(
-            color: Colors.blueGrey[(index + 1) * 100],
+            color: Colors.blueGrey[100],
             borderRadius: BorderRadius.circular(8),
           ),
           child: Center(

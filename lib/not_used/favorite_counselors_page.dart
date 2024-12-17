@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:renewus/providers/favorite_counselor_provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class FavoriteCounselorsPage extends StatelessWidget {
   @override

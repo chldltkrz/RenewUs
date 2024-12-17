@@ -1,4 +1,4 @@
-class CounselorProfile {
+class Counselor {
   String id;
   String counselorEmail;
   String counselorName;
@@ -7,9 +7,14 @@ class CounselorProfile {
   String introduction;
   List<String> profiles;
   List<String> reviews;
+  String imageUrl;
   DateTime createdAt;
 
-  CounselorProfile({
+  var price30Min;
+
+  var price50Min;
+
+  Counselor({
     required this.id,
     required this.counselorEmail,
     required this.counselorName,
@@ -18,10 +23,11 @@ class CounselorProfile {
     required this.introduction,
     required this.profiles,
     required this.reviews,
+    required this.imageUrl,
     required this.createdAt,
   });
 
-  CounselorProfile.fromJson(Map<String, dynamic> json)
+  Counselor.fromJson(Map<String, dynamic> json)
       : this(
           id: json['id'],
           counselorEmail: json['counselorEmail'],
@@ -31,6 +37,7 @@ class CounselorProfile {
           introduction: json['introduction'],
           profiles: json['profiles'],
           reviews: json['reviews'],
+          imageUrl: json['imageUrl'],
           createdAt: DateTime.parse(json['createdAt']),
         );
 

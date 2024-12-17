@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:renewus/widgets/custom_appbar.dart';
 import 'package:renewus/widgets/custom_list_tile.dart';
-import 'package:renewus/widgets/profile_card.dart';
+import 'package:renewus/pages/my_page/widgets/profile_card.dart';
 import 'package:renewus/widgets/main_bottom_sheet.dart';
 
 class MyPage extends StatefulWidget {

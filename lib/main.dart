@@ -2,7 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:renewus/pages/firebase_options.dart';
-import 'package:renewus/pages/join_page.dart';
+import 'package:renewus/pages/join_page/join_page.dart';
 import 'package:renewus/themes/app_themes.dart'; // AppTheme 임포트
 
 void main() async {

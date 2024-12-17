@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'page_provider.dart';
-import 'join_detail_page.dart';
+import '../join_detail_page/join_detail_page.dart';
 
 // Riverpod 적용된 JoinPage
 class JoinPage extends ConsumerWidget {
@@ -14,10 +13,12 @@ class JoinPage extends ConsumerWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/renewus_logo.jpeg', height: 100), // 로고 표시
+            ClipRRect(
+                borderRadius: BorderRadius.circular(20),
+                child: Image.asset('assets/renewus_logo.png',
+                    height: 100)), // 로고 표시
             const SizedBox(height: 20),
             _buildButton(context, '이메일로 가입하기', () {
-              ref.read(pageProvider.notifier).setPage('join_detail');
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const JoinDetailPage()),

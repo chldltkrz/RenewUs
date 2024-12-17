@@ -1,6 +1,6 @@
 import 'package:renewus/data/model/appointment.dart';
 
-class User {
+class Counselor {
   String id;
   String userEmail;
   String userName;
@@ -10,7 +10,7 @@ class User {
   int chargedMoney;
   DateTime createdAt;
 
-  User({
+  Counselor({
     required this.id,
     required this.userEmail,
     required this.userName,
@@ -21,7 +21,7 @@ class User {
     required this.createdAt,
   });
 
-  User.fromJson(Map<String, dynamic> json)
+  Counselor.fromJson(Map<String, dynamic> json)
       : this(
           id: json['id'],
           userEmail: json['userEmail'],

@@ -1,74 +1,117 @@
 import 'package:flutter/material.dart';
+import 'package:renewus/data/model/appointment.dart';
 import 'package:renewus/widgets/custom_appbar.dart';
 import 'package:renewus/widgets/main_bottom_sheet.dart';
-import 'package:renewus/widgets/review_card.dart';
 
+/*
+  String username;
+  String counselorName;
+  DateTime appointmentDate;
+  String appointmentTime;
+  String duration;
+  bool extended;
+  DateTime createdAt;
+  bool finished;
+  String imageUrl;
+  bool isReviewed;
+  AppointmentReview? review;
+ */
 class MyReviewPage extends StatelessWidget {
   final List<Map<String, dynamic>> reviewList = [
     {
-      'isReviewed': false,
-      'counselor': '오호라',
-      'date': '2024-12-10',
-      'time': '23:30',
+      'username': '김민수',
+      'counselorName': '김상담사',
+      'appointmentDate': DateTime(2024, 12, 10),
+      'appointmentTime': '23:30',
       'duration': '30분',
-      'review': '어ㅣㅏㄴ어리ㅏ어ㅏㅣㄹ너이;러;ㄴ얼;ㅣㄴ이;나;ㅣㅏ;ㅆㅏ',
-      'rating': 5.0,
+      'extended': false,
+      'createdAt': DateTime(2024, 12, 10),
+      'finished': true,
       'imageUrl': 'https://i.pravatar.cc/80?img=45',
+      'isReviewed': true,
+      'review': {
+        'reviewText': '어ㅣㅏㄴ어리ㅏ어ㅏㅣㄹ너이;러;ㄴ얼;ㅣㄴ이;나;ㅣㅏ;ㅆㅏ',
+        'rating': 5.0,
+      },
     },
     {
-      'isReviewed': false,
-      'counselor': '김상담사',
-      'date': '2024-11-15',
-      'time': '14:30',
+      'username': '김민수',
+      'counselorName': '김상담사',
+      'appointmentDate': DateTime(2024, 11, 15),
+      'appointmentTime': '14:30',
       'duration': '45분',
-      'review': '상담 내용이 매우 유익했어요. 상담중에 유연하게 상담시간을 연장할 수 있는것도 너무 좋은 것 같아요.',
-      'rating': 4.5,
+      'extended': false,
+      'createdAt': DateTime(2024, 11, 15),
+      'finished': true,
       'imageUrl': 'https://i.pravatar.cc/80?img=69',
+      'review': {
+        'reviewText':
+            '상담 내용이 매우 유익했어요. 상담중에 유연하게 상담시간을 연장할 수 있는것도 너무 좋은 것 같아요.',
+        'rating': 4.5,
+      },
     },
     {
-      'isReviewed': true,
-      'counselor': '가나다',
-      'date': '2024-11-16',
-      'time': '20:30',
-      'duration': '30분',
-      'review': '고민하다가 짧게나마 상담 신청했는데 다음엔 좀더 오래 심도있는 상담을 받아보고 싶네요.',
-      'rating': 4.0,
-      'imageUrl': 'https://i.pravatar.cc/80?img=26',
-    },
-    {
-      'isReviewed': true,
-      'counselor': '최쵝오',
-      'date': '2024-12-09',
-      'time': '23:30',
+      'username': '김민수',
+      'counselorName': '김상담사',
+      'appointmentDate': DateTime(2024, 10, 25),
+      'appointmentTime': '20:30',
       'duration': '50분',
-      'review':
-          '늦은 시간에 갑자기 상담요청을 했는데 빠르고 친절한 상담이 인상깊었습니다. 한번만으로 많은게 변할거라 생각하진 않지만 그래도 도움이 많이 된 것 같고 지속적으로 상담을 받아보고 싶네요.',
-      'rating': 5.0,
-      'imageUrl': 'https://i.pravatar.cc/80?img=59',
+      'extended': true,
+      'createdAt': DateTime(2024, 10, 25),
+      'finished': true,
+      'imageUrl': 'https://i.pravatar.cc/80?img=12',
+      'review': {
+        'reviewText': '고민하다가 짧게나마 상담 신청했는데 다음엔 좀더 오래 심도있는 상담을 받아보고 싶네요.',
+        'rating': 4.5,
+      },
     },
     {
-      'isReviewed': true,
-      'counselor': '아리랑',
-      'date': '2024-10-26',
-      'time': '23:30',
+      'username': '김민수',
+      'counselorName': '김상담사',
+      'appointmentDate': DateTime(2024, 10, 10),
+      'appointmentTime': '23:30',
       'duration': '30분',
-      'review':
-          '필요할때 심야 상담을 바로 받을 수 있는건 좋은 것 같아요. 그런데 조금더 깊은 얘기를 하기까진 시간이 필요한데 좀 급하게 물어보시는 느낌이 들어 아쉬웠습니다.',
-      'rating': 4.0,
-      'imageUrl': 'https://i.pravatar.cc/80?img=25',
-    },
-    {
-      'isReviewed': true,
-      'counselor': '이은총',
-      'date': '2024-12-15',
-      'time': '22:00',
-      'duration': '50분',
-      'review':
-          '쉽게 해결되지 않는 문제라 이런식으로 계속 상담만 받아도 될까 했는데 기대이상으로 도움이 많이 된 것 같습니다. 여태껏 받은 상담중에 가장 만족스러웠어요.',
-      'rating': 5.0,
+      'extended': false,
+      'createdAt': DateTime(2024, 10, 10),
+      'finished': true,
       'imageUrl': 'https://i.pravatar.cc/80?img=32',
-
-      // 'imageUrl': 'https://via.placeholder.com/150',
+      'review': {
+        'reviewText':
+            '늦은 시간에 갑자기 상담요청을 했는데 빠르고 친절한 상담이 인상깊었습니다. 한번만으로 많은게 변할거라 생각하진 않지만 그래도 도움이 많이 된 것 같고 지속적으로 상담을 받아보고 싶네요.',
+        'rating': 5.0,
+      },
+    },
+    {
+      'username': '김민수',
+      'counselorName': '김상담사',
+      'appointmentDate': DateTime(2024, 9, 30),
+      'appointmentTime': '22:00',
+      'duration': '50분',
+      'extended': false,
+      'createdAt': DateTime(2024, 9, 30),
+      'finished': true,
+      'imageUrl': 'https://i.pravatar.cc/80?img=25',
+      'review': {
+        'reviewText':
+            '필요할때 심야 상담을 바로 받을 수 있는건 좋은 것 같아요. 그런데 조금더 깊은 얘기를 하기까진 시간이 필요한데 좀 급하게 물어보시는 느낌이 들어 아쉬웠습니다.',
+        'rating': 4.0,
+      },
+    },
+    {
+      'username': '김민수',
+      'counselorName': '김상담사',
+      'appointmentDate': DateTime(2024, 9, 15),
+      'appointmentTime': '14:30',
+      'duration': '45분',
+      'extended': false,
+      'createdAt': DateTime(2024, 9, 15),
+      'finished': true,
+      'imageUrl': 'https://i.pravatar.cc/80?img=69',
+      'review': {
+        'reviewText':
+            '쉽게 해결되지 않는 문제라 이런식으로 계속 상담만 받아도 될까 했는데 기대이상으로 도움이 많이 된 것 같습니다. 여태껏 받은 상담중에 가장 만족스러웠어요.',
+        'rating': 4.5,
+      },
     },
   ];
 
@@ -117,15 +160,15 @@ class MyReviewPage extends StatelessWidget {
                 itemCount: sortedReviewList.length,
                 itemBuilder: (context, index) {
                   final review = sortedReviewList[index];
-                  return ReviewCard(
-                    counselorName: review['counselor'],
-                    date: review['date'],
-                    time: review['time'],
-                    duration: review['duration'],
-                    reviewText: review['review'],
-                    isReviewed: review['isReviewed'],
-                    rating: review['rating'],
-                    imageUrl: review['imageUrl'],
+                  return Container(
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundImage: NetworkImage(review['imageUrl']),
+                      ),
+                      title: Text(review['counselorName']),
+                      subtitle: Text(review['review']['reviewText']),
+                      trailing: Text('${review['review']['rating']} ★'),
+                    ),
                   );
                 },
               ),

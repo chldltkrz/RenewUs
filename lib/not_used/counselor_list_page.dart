@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:renewus/providers/favorite_counselor_provider.dart';
+import 'package:renewus/data/model/counselor.dart';
 
 class CounselorListPage extends StatelessWidget {
   final List<Counselor> counselors;
@@ -47,7 +47,7 @@ class CounselorListPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              counselor.name,
+                              counselor.counselorName,
                               style: TextStyle(
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold,
@@ -83,7 +83,7 @@ class CounselorListPage extends StatelessWidget {
 
                         // 간략한 설명
                         Text(
-                          counselor.description,
+                          counselor.introduction,
                           style: TextStyle(
                             fontSize: 14,
                             color: Colors.grey[600],

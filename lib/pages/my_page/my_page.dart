@@ -7,7 +7,6 @@ import 'package:renewus/widgets/main_bottom_sheet.dart';
 class MyPage extends StatefulWidget {
   final List<String> favoritedCounselors;
 
-  // favoritedCounselors를 네임드 파라미터로 받음
   MyPage({Key? key, required this.favoritedCounselors}) : super(key: key);
 
   @override
@@ -88,14 +87,15 @@ class _MyPageState extends State<MyPage> {
                 title: '상담/예약 내역',
                 icon: Icons.calendar_today,
                 onTap: () {
-                  Navigator.pushNamed(context, '/counselingHistory');
+                  Navigator.pushNamed(
+                      context, '/counselingMainPage'); // 상담/예약 내역 페이지로 이동
                 },
               ),
               CustomListTile(
                 title: '나의 리뷰',
                 icon: Icons.rate_review,
                 onTap: () {
-                  Navigator.pushNamed(context, '/myReview');
+                  Navigator.pushNamed(context, '/myReview'); // 수정된 경로로 이동
                 },
               ),
               CustomListTile(

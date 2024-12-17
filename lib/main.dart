@@ -27,15 +27,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'RenewUs',
       theme: AppTheme.lightTheme, // 테마 적용
-      home: JoinPage(),
+      home: MyPage(favoritedCounselors: favoritedCounselors), // MyPage로 변경
       routes: {
         '/myPage': (context) =>
             MyPage(favoritedCounselors: favoritedCounselors),
-        '/myReview': (context) => MyReviewPage(), // 경로 수정: '/myReview'로 연결
+        '/myReview': (context) => MyReviewPage(),
         '/notifications': (context) => NotificationPage(),
         '/counselingMainPage': (context) =>
             CounselingMainPage(), // 상담/예약 내역 페이지 경로 추가
-        // 다른 라우트 추가...
       },
     );
   }

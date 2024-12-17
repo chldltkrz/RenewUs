@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:renewus/themes/app_themes.dart'; // AppTheme
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'join_page.dart';
 
@@ -8,19 +9,18 @@ void main() {
       child: MyApp(),
     ),
   );
-}
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final List<String> favoritedCounselors = [];
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+
       title: 'RenewUS',
-      theme: ThemeData(
-        primaryColor: const Color(0xFF690AC7),
-      ),
+      theme: AppTheme.lightTheme, // 테마 적용
       home: const JoinPage(), // 시작 페이지
+
     );
   }
 }

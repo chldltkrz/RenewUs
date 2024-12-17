@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:renewus/widgets/custom_appbar.dart';
+import 'package:renewus/widgets/main_bottom_sheet.dart';
 
 class CounselingMainPage extends StatelessWidget {
   const CounselingMainPage({super.key});
@@ -6,17 +8,24 @@ class CounselingMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('상담하기'),
-        backgroundColor: const Color(0xFF690AC7),
-      ),
+      appBar: CustomAppBar(title: '상담 예약 목록'), // 기존의 CustomAppBar 사용
       body: Column(
         children: [
-          _reservationCard(), // The reservation card
-          const SizedBox(height: 10), // Adjusted spacing
-          Expanded(child: _counselorList()), // Ensure the list expands properly
+          _reservationCard(), // 예약된 상담 카드
+          const SizedBox(height: 10), // 카드 사이 여백
+          Expanded(child: _counselorList()), // 상담사 목록
         ],
       ),
+      bottomSheet: MainBottomSheet(
+        onHomePressed: () {},
+        onPersonalityTestPressed: () {},
+        onRecommendedCounselorPressed: () {},
+        onConsultationPressed: () {},
+        isHomeActive: true,
+        isPersonalityTestActive: true,
+        isRecommendedCounselorActive: true,
+        isConsultationActive: true,
+      ), // 바텀시트 추가
     );
   }
 
@@ -26,12 +35,12 @@ class CounselingMainPage extends StatelessWidget {
       margin: const EdgeInsets.all(16),
       elevation: 4,
       child: Padding(
-        padding: const EdgeInsets.all(8.0), // Added padding for better spacing
+        padding: const EdgeInsets.all(8.0), // 카드 안의 여백
         child: ListTile(
           title: const Text('예약 확정된 상담사'),
           subtitle: const Text(
             '날짜: 2024년 12월 11일\n시간: 22:00\n이용시간: 30분',
-            style: TextStyle(height: 1.5), // Better line spacing
+            style: TextStyle(height: 1.5), // 줄 간격 조정
           ),
           trailing: ElevatedButton(
             style: ElevatedButton.styleFrom(
@@ -52,7 +61,7 @@ class CounselingMainPage extends StatelessWidget {
       children: [
         _counselorCard('김현호', '전문가 상담사'),
         _counselorCard('가나다', '실시간 상담 가능'),
-        // Add more counselors as needed
+        // 추가 상담사 카드 추가 가능
       ],
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:renewus/pages/firebase_options.dart';
 import 'package:renewus/pages/join_page/join_page.dart';
+import 'package:renewus/pages/my_page/my_page.dart'; // MyPage 임포트
 import 'package:renewus/themes/app_themes.dart'; // AppTheme 임포트
 
 void main() async {
@@ -24,6 +25,11 @@ class MyApp extends StatelessWidget {
       title: 'RenewUs',
       theme: AppTheme.lightTheme, // 테마 적용
       home: JoinPage(),
+      routes: {
+        '/myPage': (context) =>
+            MyPage(favoritedCounselors: favoritedCounselors), // /myPage 경로 설정
+        // 다른 라우트 추가...
+      },
     );
   }
 }

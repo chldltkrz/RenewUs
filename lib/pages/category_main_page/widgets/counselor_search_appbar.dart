@@ -9,8 +9,10 @@ class CounsellerSearchAppbar extends StatefulWidget
 
   @override
   State<CounsellerSearchAppbar> createState() => _CounsellerSearchAppbarState();
+
+  // 앱바의 높이를 60으로 설정
   @override
-  Size get preferredSize => const Size.fromHeight(80);
+  Size get preferredSize => const Size.fromHeight(60);
 }
 
 class _CounsellerSearchAppbarState extends State<CounsellerSearchAppbar> {
@@ -29,7 +31,7 @@ class _CounsellerSearchAppbarState extends State<CounsellerSearchAppbar> {
       top: true,
       child: AppBar(
         backgroundColor: Color(0xFFD9DDE7),
-        toolbarHeight: 80,
+        toolbarHeight: 60, // 앱바의 높이를 60으로 설정
         centerTitle: false,
         title: GestureDetector(
           onTap: () {

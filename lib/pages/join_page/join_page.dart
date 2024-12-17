@@ -71,7 +71,7 @@ class JoinPage extends ConsumerWidget {
     );
   }
 
-  // 세련된 투명한 배경과 흰색 아웃라인 버튼
+  // 투명한 배경과 흰색 아웃라인 버튼
   Widget _buildOutlineButton(
       BuildContext context, String text, VoidCallback onPressed) {
     return Padding(
@@ -84,8 +84,8 @@ class JoinPage extends ConsumerWidget {
           height: 50,
           decoration: BoxDecoration(
             border: Border.all(
-              color: Colors.white, // 흰색 테두리
-              width: 2.0, // 테두리 두께
+              color: Colors.white,
+              width: 2.0,
             ),
             borderRadius: BorderRadius.circular(30),
           ),
@@ -96,7 +96,7 @@ class JoinPage extends ConsumerWidget {
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
                 fontFamily: 'Roboto',
-                color: Colors.white, // 텍스트 색상은 흰색
+                color: Colors.white,
               ),
             ),
           ),

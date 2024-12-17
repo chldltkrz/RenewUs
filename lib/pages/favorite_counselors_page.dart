@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'favorite_counselor_provider.dart';
 import 'package:renewus/providers/favorite_counselor_provider.dart';
 
 class FavoriteCounselorsPage extends StatelessWidget {

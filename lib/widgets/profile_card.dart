@@ -23,8 +23,9 @@ class ProfileCard extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color.fromARGB(255, 250, 208, 128),
-            Color(0xFFE7A137),
+            Color(0xFFFFE7A0), // 세련된 크림 노랑
+            Color(0xFFF2C94C), // 부드러운 머스터드 톤
+            Color(0xFFE7A137), // 기존 금색
           ],
         ),
         borderRadius: BorderRadius.circular(16),
@@ -65,7 +66,7 @@ class ProfileCard extends StatelessWidget {
                         '충전 잔액: $balance',
                         style: theme.textTheme.bodyMedium?.copyWith(
                           fontWeight: FontWeight.bold,
-                          color: Colors.grey[600],
+                          color: Colors.white,
                         ),
                       ),
                     ],
@@ -83,9 +84,9 @@ class ProfileCard extends StatelessWidget {
                       Navigator.pushNamed(context, '/editProfile');
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF6C4B12),
+                      backgroundColor: Color(0xFFFFE7A0),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(15),
                       ),
                       elevation: 0,
                       padding: EdgeInsets.symmetric(vertical: 12),
@@ -96,7 +97,7 @@ class ProfileCard extends StatelessWidget {
                         Text(
                           '내 정보',
                           style: TextStyle(
-                            color: Color(0xFFFFBC2D),
+                            color: Color(0xFF6C4B12),
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),
@@ -111,16 +112,16 @@ class ProfileCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(width: 16),
+                SizedBox(width: 10),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pushNamed(context, '/charge');
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF6C4B12),
+                      backgroundColor: Color(0xFFFFE7A0),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                        borderRadius: BorderRadius.circular(15),
                       ),
                       elevation: 0,
                       padding: EdgeInsets.symmetric(vertical: 12),
@@ -131,7 +132,7 @@ class ProfileCard extends StatelessWidget {
                         Text(
                           '충전하기',
                           style: TextStyle(
-                            color: Color(0xFFFFBC2D),
+                            color: Color(0xFF6C4B12),
                             fontSize: 16,
                             fontWeight: FontWeight.w600,
                           ),

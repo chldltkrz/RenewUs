@@ -72,7 +72,7 @@ class _CounselorProfilePageState extends State<CounselorProfilePage> {
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
-                        image: NetworkImage('https://via.placeholder.com/100'),
+                        image: NetworkImage('https://i.pravatar.cc/300?img=32'),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -93,7 +93,7 @@ class _CounselorProfilePageState extends State<CounselorProfilePage> {
                             style: Theme.of(context).textTheme.bodyMedium),
                         Text('50분 10만원',
                             style: Theme.of(context).textTheme.bodyMedium),
-                        Text('심야 상담 가능',
+                        Text('채팅/화상/심야 상담 가능',
                             style: Theme.of(context).textTheme.bodyMedium),
                       ],
                     ),
@@ -113,7 +113,10 @@ class _CounselorProfilePageState extends State<CounselorProfilePage> {
                 ),
                 child: Text(
                   '지금, 더 나은 삶을 위한 선택을 도와드립니다.',
-                  style: TextStyle(fontSize: 12, color: AppTheme.primaryColor),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: AppTheme.primaryColor,
+                  ),
                   textAlign: TextAlign.center,
                 ),
               ),
@@ -173,7 +176,7 @@ class InfoBox extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(10),
         border: Border.all(color: Color(0xFFF4BA3E)),
       ),

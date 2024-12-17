@@ -25,25 +25,18 @@ class ReviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(bottom: 16.0),
-      padding: EdgeInsets.all(16.0),
+      padding: EdgeInsets.only(left: 14, top: 15, right: 14, bottom: 5),
       decoration: BoxDecoration(
         color: Color(0xFFECECEC),
         borderRadius: BorderRadius.circular(12.0),
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.black.withOpacity(0.1),
-        //     spreadRadius: 1,
-        //     blurRadius: 6,
-        //     offset: Offset(0, 2),
-        //   ),
-        // ],
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // 상담사 사진
           ClipOval(
             child: Image.network(
-              imageUrl, // 이미지 URL 받아오기
+              imageUrl,
               width: 50,
               height: 50,
               fit: BoxFit.cover,
@@ -54,50 +47,77 @@ class ReviewCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('상담사: $counselorName'),
+                Text(
+                  '상담사: $counselorName',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
                 Text('날짜: $date ($time)'),
                 Text('이용시간: $duration'),
+                SizedBox(height: 8),
                 if (isReviewed) ...[
+                  Text(
+                    '리뷰: $reviewText',
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                   SizedBox(height: 8),
-                  Text('리뷰: $reviewText',
-                      maxLines: 1, overflow: TextOverflow.ellipsis),
-                  SizedBox(height: 8),
-                  Text('상담 만족도: ★$rating'),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '나의 만족도: ★$rating',
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      _buildReviewButton(),
+                    ],
+                  ),
                 ] else ...[
-                  SizedBox(height: 8),
-                  Text('리뷰 미작성', style: TextStyle(color: Colors.red)),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        '리뷰 미작성',
+                        style: TextStyle(color: Colors.red),
+                      ),
+                      _buildReviewButton(),
+                    ],
+                  ),
                 ],
               ],
             ),
           ),
-
-          Align(
-            alignment: Alignment.bottomRight,
-            child: TextButton(
-              onPressed: () {
-                // 리뷰 작성 페이지로 이동할 때 구현
-              },
-              style: ButtonStyle(
-                padding: MaterialStateProperty.all(
-                    EdgeInsets.symmetric(horizontal: 12, vertical: 6)),
-                backgroundColor: MaterialStateProperty.all(Colors.transparent),
-                shape: MaterialStateProperty.all(RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30.0),
-                  side: BorderSide(color: Color(0xFFF4BA3E), width: 1),
-                )),
-                elevation: MaterialStateProperty.all(0), // 그림자 없애기
-              ),
-              child: Text(
-                isReviewed ? '보기 >' : '쓰기 >',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  color: Color(0xFFF4BA3E),
-                  fontSize: 14,
-                ),
-              ),
-            ),
-          ),
         ],
+      ),
+    );
+  }
+
+  Widget _buildReviewButton() {
+    return TextButton(
+      onPressed: () {
+        // 리뷰 작성 페이지로 이동
+      },
+      style: ButtonStyle(
+        padding: MaterialStateProperty.all(
+            EdgeInsets.symmetric(horizontal: 8, vertical: 4)),
+        minimumSize: MaterialStateProperty.all(Size(60, 30)),
+        backgroundColor: MaterialStateProperty.all(Colors.transparent),
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30.0),
+            side: BorderSide(color: Color(0xFFE7A137), width: 1),
+          ),
+        ),
+        elevation: MaterialStateProperty.all(0), // 그림자 제거
+      ),
+      child: Text(
+        isReviewed ? '보기 >' : '쓰기 >',
+        style: TextStyle(
+          fontWeight: FontWeight.w600,
+          color: Color(0xFFE7A137),
+          fontSize: 12,
+        ),
       ),
     );
   }

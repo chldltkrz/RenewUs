@@ -7,7 +7,7 @@ class CategoryMainPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CounsellerSearchAppbar(),
+      appBar: CounsellerSearchAppbar(), // AppBar가 여기에 제대로 설정되어야 함
       body: CounselorSearchBodyTab(),
       bottomNavigationBar: CommonBottomSheet(),
     );

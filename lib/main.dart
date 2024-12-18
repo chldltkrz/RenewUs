@@ -1,8 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:renewus/not_used/notification_page.dart';
+import 'package:renewus/pages/counseling_main_page/counseling_main_page.dart';
 import 'package:renewus/pages/firebase_options.dart';
 import 'package:renewus/pages/join_page/join_page.dart';
+import 'package:renewus/pages/my_page/my_page.dart'; // MyPage 임포트
+import 'package:renewus/pages/my_review_page/my_review_page.dart'; // MyReviewPage 임포트
 import 'package:renewus/themes/app_themes.dart'; // AppTheme 임포트
 
 void main() async {
@@ -23,7 +27,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'RenewUs',
       theme: AppTheme.lightTheme, // 테마 적용
-      home: JoinPage(),
+      home: MyPage(favoritedCounselors: favoritedCounselors), // MyPage로 변경
+      routes: {
+        '/myPage': (context) =>
+            MyPage(favoritedCounselors: favoritedCounselors),
+        '/myReview': (context) => MyReviewPage(),
+        '/notifications': (context) => NotificationPage(),
+        '/counselingMainPage': (context) =>
+            CounselingMainPage(), // 상담/예약 내역 페이지 경로 추가
+      },
     );
   }
 }

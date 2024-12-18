@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:renewus/pages/my_page/widgets/profile_card.dart';
 import 'package:renewus/widgets/custom_appbar.dart';
 import 'package:renewus/widgets/custom_list_tile.dart';
-import 'package:renewus/pages/my_page/widgets/profile_card.dart';
-import 'package:renewus/widgets/main_bottom_sheet.dart';
+import 'package:renewus/widgets/main_bottom_sheet.dart'; // MainBottomSheet 임포트
 
 class MyPage extends StatefulWidget {
   final List<String> favoritedCounselors;
 
-  // favoritedCounselors를 네임드 파라미터로 받음
-  MyPage({Key? key, required this.favoritedCounselors}) : super(key: key);
+  MyPage({required this.favoritedCounselors});
 
   @override
   _MyPageState createState() => _MyPageState();
 }
 
 class _MyPageState extends State<MyPage> {
+  // 초기값을 true 또는 false로 설정
   bool isHomeActive = false;
   bool isPersonalityTestActive = false;
   bool isRecommendedCounselorActive = false;
   bool isConsultationActive = false;
 
+  // 각 버튼이 눌렸을 때의 처리
   void _onConsultationPressed() {
     setState(() {
       isHomeActive = false;
@@ -88,14 +89,15 @@ class _MyPageState extends State<MyPage> {
                 title: '상담/예약 내역',
                 icon: Icons.calendar_today,
                 onTap: () {
-                  Navigator.pushNamed(context, '/counselingHistory');
+                  Navigator.pushNamed(
+                      context, '/counselingMainPage'); // 상담/예약 내역 페이지로 이동
                 },
               ),
               CustomListTile(
                 title: '나의 리뷰',
                 icon: Icons.rate_review,
                 onTap: () {
-                  Navigator.pushNamed(context, '/myReview');
+                  Navigator.pushNamed(context, '/myReview'); // 수정된 경로로 이동
                 },
               ),
               CustomListTile(

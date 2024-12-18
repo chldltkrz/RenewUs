@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:renewus/pages/category_main_page/category_main_page_view_model.dart';
+import 'package:renewus/pages/counselor_profile_page/counselor_profile_page.dart';
 
 class CounselorSearchBodyTab extends ConsumerWidget {
   @override
@@ -120,11 +121,24 @@ class CounselorSearchBodyTab extends ConsumerWidget {
             color: Colors.blueGrey[100],
             borderRadius: BorderRadius.circular(8),
           ),
-          child: Center(
-            child: Text(
-              '$currentSorting $index',
-              style:
-                  TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => CounselorProfilePage(
+                    counselorName: '이은총',
+                    favoritedCounselors: [],
+                  ),
+                ),
+              );
+            },
+            child: Center(
+              child: Text(
+                '$currentSorting $index',
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         );

@@ -82,8 +82,7 @@ class _CounselorProfilePageState extends State<CounselorProfilePage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Text('${widget.counselorName} ★4.5',
-                        Text('이은총  ★4.5',
+                        Text('${widget.counselorName} ★4.5',
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyLarge

@@ -8,49 +8,47 @@ class CounselorSearchBodyTab extends ConsumerWidget {
     final mainTabIndex = ref.watch(categoryMainPageViewModel);
     final sortingIndex = ref.watch(sortingViewModel);
 
-    return SafeArea(
-      child: Column(
-        children: [
-          // Main Tab Filter Buttons
-          Container(
-            height: 50,
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                mainFilterButton(context, ref, '부부상담', 0, mainTabIndex),
-                mainFilterButton(context, ref, '심야상담', 1, mainTabIndex),
-                mainFilterButton(context, ref, '상담사전용', 2, mainTabIndex),
-              ],
-            ),
+    return Column(
+      children: [
+        // Main Tab Filter Buttons
+        Container(
+          height: 50,
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              mainFilterButton(context, ref, '부부상담', 0, mainTabIndex),
+              mainFilterButton(context, ref, '심야상담', 1, mainTabIndex),
+              mainFilterButton(context, ref, '상담사전용', 2, mainTabIndex),
+            ],
           ),
-          // Sorting Filter Buttons (경력순, 가격순, ...)
-          Container(
-            height: 50,
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                sortingButton(context, ref, '경력순', 0, sortingIndex),
-                sortingButton(context, ref, '가격순', 1, sortingIndex),
-                sortingButton(context, ref, '바로상담가능순', 2, sortingIndex),
-                sortingButton(context, ref, '오프라인 가까운순', 3, sortingIndex),
-              ],
-            ),
+        ),
+        // Sorting Filter Buttons (경력순, 가격순, ...)
+        Container(
+          height: 50,
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              sortingButton(context, ref, '경력순', 0, sortingIndex),
+              sortingButton(context, ref, '가격순', 1, sortingIndex),
+              sortingButton(context, ref, '바로상담가능순', 2, sortingIndex),
+              sortingButton(context, ref, '오프라인 가까운순', 3, sortingIndex),
+            ],
           ),
-          // IndexedStack for Main Tab
-          Expanded(
-            child: IndexedStack(
-              index: mainTabIndex,
-              children: [
-                gridViewForSorting(sortingIndex),
-                gridViewForSorting(sortingIndex),
-                gridViewForSorting(sortingIndex),
-              ],
-            ),
+        ),
+        // IndexedStack for Main Tab
+        Expanded(
+          child: IndexedStack(
+            index: mainTabIndex,
+            children: [
+              gridViewForSorting(sortingIndex),
+              gridViewForSorting(sortingIndex),
+              gridViewForSorting(sortingIndex),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 

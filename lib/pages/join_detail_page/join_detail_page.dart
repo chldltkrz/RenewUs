@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:renewus/pages/category_main_page/category_main_page.dart';
+import 'package:renewus/pages/category_main_page/widgets/common_bottom_sheet.dart';
 
 class JoinDetailPage extends StatelessWidget {
   const JoinDetailPage({super.key});
@@ -84,7 +85,7 @@ class JoinDetailPage extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => CategoryMainPage()),
+                          builder: (context) => CommonBottomSheet()),
                     );
                   },
                   child: Container(

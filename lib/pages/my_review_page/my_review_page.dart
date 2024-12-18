@@ -99,6 +99,8 @@ class MyReviewPage extends StatelessWidget {
       'finished': true,
       'imageUrl': 'https://i.pravatar.cc/80?img=23',
       'isReviewed': false,
+      'imageUrl': 'https://i.pravatar.cc/80?img=69',
+      'isReviewed': true,
       'review': {
         'reviewText':
             '쉽게 해결되지 않는 문제라 이런식으로 계속 상담만 받아도 될까 했는데 기대이상으로 도움이 많이 된 것 같습니다. 여태껏 받은 상담중에 가장 만족스러웠어요.',

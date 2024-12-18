@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       title: 'RenewUs',
       theme: AppTheme.lightTheme, // 테마 적용
       home: JoinPage(),
-      // CounselorProfilePage(
+      // home: CounselorProfilePage(
       //   counselorName: '이은총', // 기본 상담사 이름
       //   favoritedCounselors: favoritedCounselors,
       // ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:renewus/pages/category_main_page/widgets/counselor_search_appbar.dart';
 import 'package:renewus/pages/category_main_page/widgets/counselor_search_body_tab.dart';
 import 'package:renewus/pages/counseling_main_page/counseling_main_page.dart';
 
@@ -21,6 +22,7 @@ class _CommonBottomSheetState extends State<CommonBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CounsellerSearchAppbar(),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:renewus/pages/home_page/home_page.dart';
 
 class CategoryMainPageBottomNavigationbar extends StatefulWidget {
   const CategoryMainPageBottomNavigationbar({super.key});
@@ -12,7 +13,7 @@ class _CategoryMainPageBottomNavigationbarState
     extends State<CategoryMainPageBottomNavigationbar> {
   var _index = 0;
   List<Widget> _pages = [
-    Text('1'),
+    HomePage(),
     Text('2'),
     Text('3'),
     Text('4'),

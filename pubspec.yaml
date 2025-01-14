@@ -114,14 +114,14 @@ flutter_native_splash:
   # splash screen to a png image.  This is useful for gradients. The image will be stretch to the
   # size of the app. Only one parameter can be used, color and background_image cannot both be set.
   color: "#42a5f5"
-  #background_image: "assets/background.png"
+  #background_image: "assets/renewus_logo.png"
 
   # Optional parameters are listed below.  To enable a parameter, uncomment the line by removing
   # the leading # character.
 
   # The image parameter allows you to specify an image used in the splash screen.  It must be a
   # png file and should be sized for 4x pixel density.
-  #image: assets/splash.png
+  image: assets/renewus_logo.png
 
   # The branding property allows you to specify an image used as branding in the splash screen.
   # It must be a png file. It is supported for Android, iOS and the Web.  For Android 12,
@@ -185,12 +185,12 @@ flutter_native_splash:
   #color_dark_ios: "#042a49"
   #color_web: "#42a5f5"
   #color_dark_web: "#042a49"
-  #image_android: assets/splash-android.png
-  #image_dark_android: assets/splash-invert-android.png
-  #image_ios: assets/splash-ios.png
-  #image_dark_ios: assets/splash-invert-ios.png
-  #image_web: assets/splash-web.gif
-  #image_dark_web: assets/splash-invert-web.gif
+  # image_android: assets/renewus_logo.png
+  # image_dark_android: assets/renewus_logo.png
+  # image_ios: assets/renewus_logo.png
+  # image_dark_ios: assets/renewus_logo.png
+  # image_web: assets/renewus_logo.png
+  # image_dark_web: assets/renewus_logo.png
   #background_image_android: "assets/background-android.png"
   #background_image_dark_android: "assets/dark-background-android.png"
   #background_image_ios: "assets/background-ios.png"

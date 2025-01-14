@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:renewus/pages/category_main_page/widgets/common_bottom_sheet.dart';
-import 'package:renewus/pages/category_main_page/widgets/counselor_search_body_tab.dart';
+import 'package:renewus/pages/category_main_page/widgets/category_main_page_appbar.dart';
+import 'package:renewus/pages/category_main_page/widgets/category_main_page_bottom_navigationbar.dart';
 
 class CategoryMainPage extends StatelessWidget {
+  const CategoryMainPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CounselorSearchBodyTab(),
-      bottomNavigationBar: CommonBottomSheet(),
+      appBar: CategpryMainPageAppbar("this is category main page"),
+      body: CategoryMainPageBottomNavigationbar(),
     );
   }
 }

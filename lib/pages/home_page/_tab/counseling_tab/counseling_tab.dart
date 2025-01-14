@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:renewus/pages/counselor_profile_page/counselor_profile_page.dart';
 
 class CounselingTab extends StatelessWidget {
   const CounselingTab({super.key});
@@ -68,7 +69,14 @@ class CounselingTab extends StatelessWidget {
                   childAspectRatio: 0.6),
               itemCount: 9,
               itemBuilder: (context, index) => GestureDetector(
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => CounselorProfilePage('이은총'),
+                        ),
+                      );
+                    },
                     child: Column(
                       children: [
                         Image.network('https://picsum.photos/100/100'),

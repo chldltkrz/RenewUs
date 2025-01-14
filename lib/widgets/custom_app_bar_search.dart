@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:renewus/pages/category_main_page/category_main_page.dart';
 
-class CategpryMainPageAppbar extends StatefulWidget implements PreferredSizeWidget {
+class CustomAppBarSearch extends StatefulWidget implements PreferredSizeWidget {
   String title;
 
-  CategpryMainPageAppbar(this.title);
+  CustomAppBarSearch(this.title);
 
   @override
-  State<CategpryMainPageAppbar> createState() => _CategpryMainPageAppbarState();
+  State<CustomAppBarSearch> createState() => _CustomAppBarSearchState();
 
   @override
   // TODO: implement preferredSize
   Size get preferredSize => Size.fromHeight(80);
 }
 
-class _CategpryMainPageAppbarState extends State<CategpryMainPageAppbar> {
+class _CustomAppBarSearchState extends State<CustomAppBarSearch> {
   final searchTextFieldController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 

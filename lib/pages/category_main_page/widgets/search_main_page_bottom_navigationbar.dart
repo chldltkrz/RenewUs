@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:renewus/pages/home_page/home_page.dart';
 
-class CategoryMainPageBottomNavigationbar extends StatefulWidget {
-  const CategoryMainPageBottomNavigationbar({super.key});
+class SearchMainPageBottomNavigationbar extends StatefulWidget {
+  const SearchMainPageBottomNavigationbar({super.key});
 
   @override
-  State<CategoryMainPageBottomNavigationbar> createState() =>
-      _CategoryMainPageBottomNavigationbarState();
+  State<SearchMainPageBottomNavigationbar> createState() =>
+      _SearchMainPageBottomNavigationbarState();
 }
 
-class _CategoryMainPageBottomNavigationbarState
-    extends State<CategoryMainPageBottomNavigationbar> {
+class _SearchMainPageBottomNavigationbarState
+    extends State<SearchMainPageBottomNavigationbar> {
   var _index = 0;
   List<Widget> _pages = [
     HomePage(),
@@ -33,15 +33,15 @@ class _CategoryMainPageBottomNavigationbarState
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: '성격검사',
+            label: '심리분석',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: '추천상담사',
+            label: '맞춤상담사',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: '나의상담',
+            label: '내공간',
           ),
         ],
         currentIndex: _index,

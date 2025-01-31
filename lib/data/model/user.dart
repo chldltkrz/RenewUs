@@ -4,7 +4,6 @@ class Counselor {
   String id;
   String userEmail;
   String userName;
-  String password;
   List<Appointment> appointments;
   String imageUrl;
   int chargedMoney;
@@ -14,7 +13,6 @@ class Counselor {
     required this.id,
     required this.userEmail,
     required this.userName,
-    required this.password,
     required this.appointments,
     required this.imageUrl,
     required this.chargedMoney,
@@ -26,7 +24,6 @@ class Counselor {
           id: json['id'],
           userEmail: json['userEmail'],
           userName: json['userName'],
-          password: json['password'],
           appointments: json['appointments'],
           imageUrl: json['imageUrl'],
           chargedMoney: json['chargedMoney'],
@@ -37,7 +34,6 @@ class Counselor {
         'id': id,
         'userEmail': userEmail,
         'userName': userName,
-        'password': password,
         'appointments': appointments,
         'imageUrl': imageUrl,
         'chargedMoney': chargedMoney,

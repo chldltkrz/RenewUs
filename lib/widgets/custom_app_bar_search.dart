@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:renewus/pages/category_main_page/category_main_page.dart';
+import 'package:renewus/pages/category_main_page/search_main_page.dart';
 
 class CustomAppBarSearch extends StatefulWidget implements PreferredSizeWidget {
-  String title;
+  final String title;
 
   CustomAppBarSearch(this.title);
 
@@ -10,13 +10,11 @@ class CustomAppBarSearch extends StatefulWidget implements PreferredSizeWidget {
   State<CustomAppBarSearch> createState() => _CustomAppBarSearchState();
 
   @override
-  // TODO: implement preferredSize
   Size get preferredSize => Size.fromHeight(80);
 }
 
 class _CustomAppBarSearchState extends State<CustomAppBarSearch> {
   final searchTextFieldController = TextEditingController();
-  final formKey = GlobalKey<FormState>();
 
   @override
   void dispose() {
@@ -24,11 +22,21 @@ class _CustomAppBarSearchState extends State<CustomAppBarSearch> {
     super.dispose();
   }
 
+  // Function to handle the search logic
+  void _performSearch(String query) {
+    // Perform your search logic here.
+    // For example, you can print the query or filter a list of items.
+    print("Search query: $query");
+
+    // Example: Clear the search bar after search (optional)
+    searchTextFieldController.clear();
+  }
+
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Color(0xFFD9DDE7),
-      toolbarHeight: 60, // 앱바의 높이를 60으로 설정
+      toolbarHeight: 60, // Set AppBar height
       centerTitle: true,
       title: GestureDetector(
         onTap: () {
@@ -39,6 +47,10 @@ class _CustomAppBarSearchState extends State<CustomAppBarSearch> {
             Expanded(
               child: TextField(
                 controller: searchTextFieldController,
+                onSubmitted: (value) {
+                  // Handle the search action when the user presses "Enter"
+                  _performSearch(value);
+                },
                 decoration: InputDecoration(
                   hintText: '상담사 검색',
                   prefixIcon: Icon(Icons.search, color: Color(0xFF182233)),
@@ -58,7 +70,9 @@ class _CustomAppBarSearchState extends State<CustomAppBarSearch> {
             IconButton(
               icon:
                   Icon(Icons.notification_important, color: Color(0xFF182233)),
-              onPressed: () {},
+              onPressed: () {
+                print("Notifications button pressed");
+              },
             ),
             Container(
               height: 50,
@@ -69,7 +83,7 @@ class _CustomAppBarSearchState extends State<CustomAppBarSearch> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => CategoryMainPage(),
+                      builder: (context) => SearchMainPage(),
                     ),
                   );
                 },
@@ -84,8 +98,4 @@ class _CustomAppBarSearchState extends State<CustomAppBarSearch> {
       ),
     );
   }
-
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize => Size.fromHeight(80);
 }

@@ -1,64 +1,78 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:renewus/core/snackbar_util.dart';
-import 'package:renewus/pages/join_page/widgets/email_join_page.dart';
-import 'package:renewus/pages/login_page/login_page.dart';
 import 'package:renewus/pages/login_page/widgets/logo.dart';
 
-class JoinPage extends StatelessWidget {
-  const JoinPage({super.key});
+class EmailLogin extends StatefulWidget {
+  const EmailLogin({super.key});
+
+  @override
+  State<EmailLogin> createState() => _EmailLoginState();
+}
+
+class _EmailLoginState extends State<EmailLogin> {
+  final TextEditingController _idTextController = TextEditingController();
+  final TextEditingController _pswdTextController = TextEditingController();
+
+  @override
+  void dispose() {
+    _idTextController.dispose();
+    _pswdTextController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+      appBar: AppBar(
+        title: Text('이메일로 계속하기'),
+      ),
+      body: Column(
+        children: [
+          SizedBox(height: 100),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.all(8.0),
             child: Column(
               children: [
-                SizedBox(height: 120),
                 Logo(),
-                SizedBox(height: 150),
-                SizedBox(
-                  width: double.infinity,
-                  height: 60,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      SnackbarUtil.showSnackBar(context, '카카오 로그인은 준비중입니다');
-                    },
-                    child: Text('카카오로 회원가입'),
+                SizedBox(height: 100),
+                TextField(
+                  controller: _idTextController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: '이메일',
                   ),
                 ),
                 SizedBox(height: 16),
-                SizedBox(
-                  width: double.infinity,
-                  height: 60,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EmailJoinPage()));
-                    },
-                    child: Text('이메일로 회원가입'),
+                TextField(
+                  controller: _pswdTextController,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: '비밀번호',
                   ),
                 ),
                 SizedBox(height: 20),
+                SizedBox(
+                  width: double.infinity,
+                  height: 50,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      print('시작하기');
+                    },
+                    child: Text('시작하기'),
+                  ),
+                ),
+                SizedBox(height: 10),
                 RichText(
                   text: TextSpan(
-                    text: '이미 가입되어 있나요? ',
+                    text: '회원이 아니신가요? ',
                     style: TextStyle(color: Colors.black),
                     children: [
                       TextSpan(
-                        text: '여기를 클릭해 로그인해주세요',
+                        text: '여기를 클릭해주세요',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => LoginPage()));
+                            print('로그인');
                           },
                         style: TextStyle(
                           color: Colors.blue,
@@ -71,7 +85,7 @@ class JoinPage extends StatelessWidget {
                 SizedBox(height: 10),
                 RichText(
                   text: TextSpan(
-                    text: '혹시 상담사이신가요? ',
+                    text: '비밀번호가 기억나지 않나요? ',
                     style: TextStyle(color: Colors.black),
                     children: [
                       TextSpan(
@@ -91,7 +105,7 @@ class JoinPage extends StatelessWidget {
               ],
             ),
           ),
-        ),
+        ],
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:renewus/pages/category_main_page/category_main_page.dart';
+import 'package:renewus/pages/category_main_page/search_main_page.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
@@ -21,7 +21,9 @@ class _CustomAppBarState extends State<CustomAppBar> {
         children: [
           IconButton(
             icon: Icon(Icons.notification_important, color: Color(0xFF182233)),
-            onPressed: () {},
+            onPressed: () {
+              print("Notifications button pressed");
+            },
           ),
           Container(
             height: 50,
@@ -32,7 +34,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => CategoryMainPage(),
+                    builder: (context) => SearchMainPage(),
                   ),
                 );
               },

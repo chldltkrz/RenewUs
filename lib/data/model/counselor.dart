@@ -10,7 +10,6 @@ class Counselor {
   DateTime createdAt;
 
   var price30Min;
-
   var price50Min;
 
   Counselor({

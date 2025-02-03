@@ -29,7 +29,9 @@ class LoginPage extends StatelessWidget {
                     onPressed: () {
                       SnackbarUtil.showSnackBar(context, '카카오 로그인은 준비중입니다');
                     },
-                    child: Text('카카오로 계속하기'),
+                    child: Text('카카오로 계속하기',
+                        style:
+                            TextStyle(color: Theme.of(context).primaryColor)),
                   ),
                 ),
                 SizedBox(height: 16),

@@ -9,21 +9,20 @@ import 'package:renewus/pages/login_page/widgets/logo.dart';
 class JoinPage extends StatelessWidget {
   const JoinPage({super.key});
 
-  void signUp(String email, String password) {
+  static Future<UserCredential> signUp(String email, String password) async {
     try {
-      FirebaseAuth.instance
-          .createUserWithEmailAndPassword(email: email, password: password)
-          .then((value) {
-        print(value);
-      });
+      return await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
         print('The account already exists for that email.');
       }
+      rethrow;
     } catch (e) {
       debugPrint('에러');
+      rethrow;
     }
   }
 

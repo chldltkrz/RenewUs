@@ -6,33 +6,37 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 3,
-      child: Column(
-        children: [
-          TabBar(
-            tabs: [
-              Tab(
-                text: '실시간 상담',
+    return Scaffold(
+      body: SafeArea(
+        child: DefaultTabController(
+          length: 3,
+          child: Column(
+            children: [
+              TabBar(
+                tabs: [
+                  Tab(
+                    text: '실시간 상담',
+                  ),
+                  Tab(
+                    text: '예약 상담',
+                  ),
+                  Tab(
+                    text: '상담사 전용',
+                  ),
+                ],
               ),
-              Tab(
-                text: '예약 상담',
-              ),
-              Tab(
-                text: '상담사 전용',
+              Expanded(
+                child: TabBarView(
+                  children: [
+                    CounselingTab(),
+                    Icon(Icons.directions_transit),
+                    Icon(Icons.directions_bike),
+                  ],
+                ),
               ),
             ],
           ),
-          Expanded(
-            child: TabBarView(
-              children: [
-                CounselingTab(),
-                Icon(Icons.directions_transit),
-                Icon(Icons.directions_bike),
-              ],
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }

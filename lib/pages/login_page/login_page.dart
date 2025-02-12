@@ -67,7 +67,7 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(color: Colors.black),
                     children: [
                       TextSpan(
-                        text: '여기를 클릭해주세요',
+                        text: '회원가입',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             Navigator.push(
@@ -86,17 +86,17 @@ class LoginPage extends StatelessWidget {
                 SizedBox(height: 12),
                 RichText(
                   text: TextSpan(
-                    text: '혹시 상담사이신가요? ',
+                    text: '상담사이신가요? ',
                     style: TextStyle(color: Colors.black),
                     children: [
                       TextSpan(
-                        text: '여기를 클릭해주세요',
+                        text: '상담사 전용',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             print('로그인');
                           },
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.grey,
                           fontWeight: FontWeight.bold,
                         ),
                       )

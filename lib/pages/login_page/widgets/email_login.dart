@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:renewus/core/snackbar_util.dart';
 import 'package:renewus/pages/home_page/home_page.dart';
 import 'package:renewus/pages/join_page/join_page.dart';
 import 'package:renewus/pages/login_page/widgets/logo.dart';
@@ -16,16 +17,13 @@ class _EmailLoginState extends State<EmailLogin> {
   final TextEditingController _idTextController = TextEditingController();
   final TextEditingController _pswdTextController = TextEditingController();
 
-  void signIn(String email, String password) {
+  Future<UserCredential> signIn(String email, String password) async {
     try {
-      FirebaseAuth.instance
-          .signInWithEmailAndPassword(email: email, password: password)
-          .then((value) => {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => HomePage()))
-              });
+      return await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
     } catch (e) {
-      debugPrint('에러');
+      debugPrint('에러: $e');
+      rethrow;
     }
   }
 
@@ -61,7 +59,9 @@ class _EmailLoginState extends State<EmailLogin> {
                 ),
                 SizedBox(height: 16),
                 TextField(
+                  obscureText: true,
                   controller: _pswdTextController,
+                  keyboardType: TextInputType.visiblePassword,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(),
                     labelText: '비밀번호',
@@ -72,11 +72,24 @@ class _EmailLoginState extends State<EmailLogin> {
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {
-                      signIn(_idTextController.value.text.trim(),
-                          _pswdTextController.value.text.trim());
+                    onPressed: () async {
+                      try {
+                        UserCredential cred = await signIn(
+                            _idTextController.value.text.trim(),
+                            _pswdTextController.value.text.trim());
+
+                        if (cred.user != null) {
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomePage()));
+                        }
+                      } catch (e) {
+                        SnackbarUtil.showSnackBar(
+                            context, '로그인에 실패했습니다' + e.toString());
+                      }
                     },
-                    child: Text('시작하기'),
+                    child: Text('로그인'),
                   ),
                 ),
                 SizedBox(height: 10),
@@ -86,12 +99,13 @@ class _EmailLoginState extends State<EmailLogin> {
                     style: TextStyle(color: Colors.black),
                     children: [
                       TextSpan(
-                        text: '여기를 클릭해주세요',
+                        text: '회원가입',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            JoinPage().signUp(
-                                _idTextController.value.text.trim(),
-                                _pswdTextController.value.text.trim());
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => JoinPage()));
                           },
                         style: TextStyle(
                           color: Colors.blue,
@@ -104,17 +118,17 @@ class _EmailLoginState extends State<EmailLogin> {
                 SizedBox(height: 10),
                 RichText(
                   text: TextSpan(
-                    text: '비밀번호가 기억나지 않나요? ',
+                    text: '비밀번호를 잊으셨나요? ',
                     style: TextStyle(color: Colors.black),
                     children: [
                       TextSpan(
-                        text: '여기를 클릭해주세요',
+                        text: '비밀번호 찾기',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
                             print('비밀번호 찾기 클릭');
                           },
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.grey,
                           fontWeight: FontWeight.bold,
                         ),
                       )

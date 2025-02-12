@@ -5,19 +5,19 @@ ThemeData initThemeData({required Brightness brightness}) {
     return ThemeData(
       brightness: Brightness.light,
       colorScheme: ColorScheme.light(
-        primary: Color(0x6385FF), // 주요 색상
-        secondary: Color(0x2ACDD6), // 보조 색상
+        primary: Color(0xFF6385FF), // 주요 색상
+        secondary: Color(0xFF2ACDD6), // 보조 색상
         onPrimary: Colors.white, // 주 색상의 대비 색상
       ),
-      primaryColor: Color(0x6385FF),
+      primaryColor: Color(0xFF6385FF),
       buttonTheme: ButtonThemeData(
         buttonColor: Colors.grey,
         textTheme: ButtonTextTheme.primary,
       ),
       textTheme: TextTheme(
-        bodyLarge: TextStyle(color: Color(0x6385FF)),
-        bodyMedium: TextStyle(color: Color(0x6385FF)),
-        titleLarge: TextStyle(color: Color(0x6385FF)),
+        bodyLarge: TextStyle(color: Colors.black),
+        bodyMedium: TextStyle(color: Colors.black),
+        titleLarge: TextStyle(color: Colors.black),
       ),
     );
   } else {

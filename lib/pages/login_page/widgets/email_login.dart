@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:renewus/pages/home_page/home_page.dart';
+import 'package:renewus/pages/join_page/join_page.dart';
 import 'package:renewus/pages/login_page/widgets/logo.dart';
 
 class EmailLogin extends StatefulWidget {
@@ -12,6 +15,19 @@ class EmailLogin extends StatefulWidget {
 class _EmailLoginState extends State<EmailLogin> {
   final TextEditingController _idTextController = TextEditingController();
   final TextEditingController _pswdTextController = TextEditingController();
+
+  void signIn(String email, String password) {
+    try {
+      FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password)
+          .then((value) => {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomePage()))
+              });
+    } catch (e) {
+      debugPrint('에러');
+    }
+  }
 
   @override
   void dispose() {
@@ -57,7 +73,8 @@ class _EmailLoginState extends State<EmailLogin> {
                   height: 50,
                   child: ElevatedButton(
                     onPressed: () {
-                      print('시작하기');
+                      signIn(_idTextController.value.text.trim(),
+                          _pswdTextController.value.text.trim());
                     },
                     child: Text('시작하기'),
                   ),
@@ -72,7 +89,9 @@ class _EmailLoginState extends State<EmailLogin> {
                         text: '여기를 클릭해주세요',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            print('로그인');
+                            JoinPage().signUp(
+                                _idTextController.value.text.trim(),
+                                _pswdTextController.value.text.trim());
                           },
                         style: TextStyle(
                           color: Colors.blue,
@@ -92,7 +111,7 @@ class _EmailLoginState extends State<EmailLogin> {
                         text: '여기를 클릭해주세요',
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            print('로그인');
+                            print('비밀번호 찾기 클릭');
                           },
                         style: TextStyle(
                           color: Colors.blue,

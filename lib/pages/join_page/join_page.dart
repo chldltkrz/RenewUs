@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:renewus/core/snackbar_util.dart';
@@ -7,6 +8,24 @@ import 'package:renewus/pages/login_page/widgets/logo.dart';
 
 class JoinPage extends StatelessWidget {
   const JoinPage({super.key});
+
+  void signUp(String email, String password) {
+    try {
+      FirebaseAuth.instance
+          .createUserWithEmailAndPassword(email: email, password: password)
+          .then((value) {
+        print(value);
+      });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        print('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        print('The account already exists for that email.');
+      }
+    } catch (e) {
+      debugPrint('에러');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {

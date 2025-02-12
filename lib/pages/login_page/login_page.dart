@@ -16,7 +16,7 @@ class LoginPage extends StatelessWidget {
         child: SizedBox(
           width: double.infinity,
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.all(24),
             child: Column(
               children: [
                 SizedBox(height: 120),
@@ -83,7 +83,7 @@ class LoginPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 10),
+                SizedBox(height: 12),
                 RichText(
                   text: TextSpan(
                     text: '혹시 상담사이신가요? ',

@@ -9,21 +9,23 @@ class Logo extends StatelessWidget {
       children: [
         Image.asset(
           'assets/renewus_logo.png',
-          width: 150,
+          width: 92,
         ),
-        SizedBox(height: 32),
+        SizedBox(height: 24),
         Text(
           'RENEWUS',
           style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
+            fontFamily: 'Noto Sans KR',
+            fontSize: 22,
+            fontWeight: FontWeight.w700,
           ),
         ),
+        SizedBox(height: 8),
         Text(
           '부부간의 소통을 이야기하다',
           style: TextStyle(
-            fontSize: 12,
-            fontWeight: FontWeight.w200,
+            fontSize: 14,
+            fontWeight: FontWeight.w400,
           ),
         ),
       ],

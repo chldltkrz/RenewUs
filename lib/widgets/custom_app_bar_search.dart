@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:renewus/pages/category_main_page/search_main_page.dart';
 
 class CustomAppBarSearch extends StatefulWidget implements PreferredSizeWidget {
   final String title;
@@ -38,6 +37,7 @@ class _CustomAppBarSearchState extends State<CustomAppBarSearch> {
       backgroundColor: Color(0xFFD9DDE7),
       toolbarHeight: 60, // Set AppBar height
       centerTitle: true,
+      automaticallyImplyLeading: false,
       title: GestureDetector(
         onTap: () {
           FocusScope.of(context).unfocus();
@@ -52,8 +52,7 @@ class _CustomAppBarSearchState extends State<CustomAppBarSearch> {
                   _performSearch(value);
                 },
                 decoration: InputDecoration(
-                  hintText: '상담사 검색',
-                  prefixIcon: Icon(Icons.search, color: Color(0xFF182233)),
+                  hintText: '키워드 검색',
                   hintStyle: TextStyle(
                     color: Color(0xFF182233),
                   ),
@@ -64,34 +63,23 @@ class _CustomAppBarSearchState extends State<CustomAppBarSearch> {
                   filled: true,
                   fillColor: Colors.white,
                   contentPadding: EdgeInsets.symmetric(horizontal: 20),
+                  suffixIcon: IconButton(
+                    icon: Icon(Icons.search, color: Color(0xFF182233)),
+                    onPressed: () {
+                      // Handle the search action when the user presses the search icon
+                      _performSearch(
+                          searchTextFieldController.value.text.trim());
+                    },
+                  ),
                 ),
               ),
             ),
             IconButton(
-              icon:
-                  Icon(Icons.notification_important, color: Color(0xFF182233)),
+              icon: Icon(Icons.notifications_none_rounded,
+                  color: Color(0xFF182233)),
               onPressed: () {
                 print("Notifications button pressed");
               },
-            ),
-            Container(
-              height: 50,
-              width: 50,
-              color: Colors.transparent,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SearchMainPage(),
-                    ),
-                  );
-                },
-                child: Icon(
-                  Icons.account_circle,
-                  color: Color(0xFF182233),
-                ),
-              ),
             ),
           ],
         ),

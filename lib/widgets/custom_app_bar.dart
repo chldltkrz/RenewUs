@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:renewus/pages/category_main_page/search_main_page.dart';
+import 'package:renewus/pages/home_page/home_page.dart';
 
 class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final String title;
@@ -34,7 +34,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => SearchMainPage(),
+                    builder: (context) => HomePage(),
                   ),
                 );
               },

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:renewus/pages/home_page/_tab/home_tab/_home_tab.dart';
+import 'package:renewus/pages/home_page/_tab/_home_tab/_home_tab.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});

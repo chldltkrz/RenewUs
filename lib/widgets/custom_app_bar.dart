@@ -25,25 +25,6 @@ class _CustomAppBarState extends State<CustomAppBar> {
               print("Notifications button pressed");
             },
           ),
-          Container(
-            height: 50,
-            width: 50,
-            color: Colors.transparent,
-            child: GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(),
-                  ),
-                );
-              },
-              child: Icon(
-                Icons.account_circle,
-                color: Color(0xFF182233),
-              ),
-            ),
-          ),
         ],
       ),
     ]);

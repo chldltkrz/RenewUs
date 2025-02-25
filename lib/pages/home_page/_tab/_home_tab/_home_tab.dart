@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:renewus/data/model/counselor.dart';
 import 'package:renewus/data/repository/counselor_repository.dart';
+import 'package:renewus/pages/home_page/_tab/_home_tab/widgets/counselor_detail.dart';
 import 'package:renewus/widgets/custom_app_bar_search.dart';
 
 class HomeTab extends StatelessWidget {
@@ -57,9 +59,9 @@ class HomeTab extends StatelessWidget {
                 if (snapshot.hasData) {
                   return Expanded(
                     child: ListView.builder(
-                      itemCount: snapshot.data!.length,
+                      itemCount: snapshot.data?.length,
                       itemBuilder: (context, index) {
-                        return Text(snapshot.data![index].counselorEmail);
+                        return mainDescription(context, snapshot.data![index]);
                       },
                     ),
                   );
@@ -74,93 +76,116 @@ class HomeTab extends StatelessWidget {
     );
   }
 
-  Padding mainDescription(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10.0),
-      child: Row(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: Container(
-                width: 90,
-                height: 140,
-                color: Colors.grey,
-                child: Icon(Icons.health_and_safety)),
-          ),
-          SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+  Container mainDescription(BuildContext context, Counselor counselor) {
+    return Container(
+      color: Colors.transparent,
+      child: GestureDetector(
+        onTap: () => {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CounselorDetail(counselor: counselor)))
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child: Row(
             children: [
-              SizedBox(
-                width: MediaQuery.of(context).size.width - 140,
-                child: Row(
-                  children: [
-                    Chip(
-                      label: Container(
-                        width: 35,
-                        height: 14,
-                        child: Text('바로상담',
-                            style: TextStyle(color: Colors.blue, fontSize: 10)),
-                      ),
-                      backgroundColor: Colors.blue[50],
-                    ),
-                    SizedBox(width: 5),
-                    Chip(
-                      label: Container(
-                        width: 20,
-                        height: 14,
-                        child: Text('추천',
-                            style:
-                                TextStyle(color: Colors.orange, fontSize: 10)),
-                      ),
-                      backgroundColor: Colors.orange[50],
-                    ),
-                    SizedBox(width: 5),
-                    Chip(
-                      label: Container(
-                        width: 20,
-                        height: 14,
-                        child: Text('신규',
-                            style: TextStyle(color: Colors.red, fontSize: 10)),
-                      ),
-                      backgroundColor: Colors.red[50],
-                    ),
-                    SizedBox(width: 5),
-                    Spacer(),
-                    Icon(Icons.favorite_border),
-                  ],
-                ),
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Container(
+                    width: 90,
+                    height: 140,
+                    color: Colors.grey,
+                    child: counselor.imageUrl!.length > 0
+                        ? Image.network(
+                            counselor.imageUrl!,
+                            fit: BoxFit.cover,
+                          )
+                        : Icon(Icons.health_and_safety)),
               ),
-              SizedBox(height: 5),
-              Row(
+              SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    '홍길동',
-                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width - 140,
+                    child: Row(
+                      children: [
+                        Chip(
+                          label: Container(
+                            width: 35,
+                            height: 14,
+                            child: Text('바로상담',
+                                style: TextStyle(
+                                    color: Colors.blue, fontSize: 10)),
+                          ),
+                          backgroundColor: Colors.blue[50],
+                        ),
+                        SizedBox(width: 5),
+                        Chip(
+                          label: Container(
+                            width: 20,
+                            height: 14,
+                            child: Text('추천',
+                                style: TextStyle(
+                                    color: Colors.orange, fontSize: 10)),
+                          ),
+                          backgroundColor: Colors.orange[50],
+                        ),
+                        SizedBox(width: 5),
+                        Chip(
+                          label: Container(
+                            width: 20,
+                            height: 14,
+                            child: Text('신규',
+                                style:
+                                    TextStyle(color: Colors.red, fontSize: 10)),
+                          ),
+                          backgroundColor: Colors.red[50],
+                        ),
+                        SizedBox(width: 5),
+                        Spacer(),
+                        Icon(Icons.favorite_border),
+                      ],
+                    ),
                   ),
-                  SizedBox(width: 5),
-                  Icon(Icons.star, color: Colors.amber, size: 16),
-                  Text(' 4.7 '),
-                  Text('후기(42개)', style: TextStyle(color: Colors.grey)),
-                ],
-              ),
-              Text('상담경력: 12년'),
-              SizedBox(
-                width: MediaQuery.of(context).size.width - 140,
-                child: Text('가족상담 전문가로 당신의 고민을 듣고 부부사이의 회복과 성장을 함께하겠습니다.'),
-              ),
-              Row(
-                children: [
-                  Text('채팅상담', style: TextStyle(color: Colors.grey)),
-                  SizedBox(width: 10),
-                  Text('전화상담', style: TextStyle(color: Colors.grey)),
-                  SizedBox(width: 10),
-                  Text('화상 상담', style: TextStyle(color: Colors.grey)),
+                  SizedBox(height: 5),
+                  Row(
+                    children: [
+                      Text(
+                        counselor.counselorName ?? '이름없음',
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(width: 5),
+                      Icon(Icons.star, color: Colors.amber, size: 16),
+                      Text(counselor.rating.toString()),
+                      Text('후기(' + counselor.reviews!.length.toString() + ')',
+                          style: TextStyle(color: Colors.grey)),
+                    ],
+                  ),
+                  Text('상담경력:' + counselor.totalCareer.toString() + '년'),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width - 140,
+                    child: Text(
+                      counselor.introduction ?? '소개없음',
+                      maxLines: 2,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Text('채팅상담', style: TextStyle(color: Colors.grey)),
+                      SizedBox(width: 10),
+                      Text('전화상담', style: TextStyle(color: Colors.grey)),
+                      SizedBox(width: 10),
+                      Text('화상 상담', style: TextStyle(color: Colors.grey)),
+                    ],
+                  ),
                 ],
               ),
             ],
           ),
-        ],
+        ),
       ),
     );
   }

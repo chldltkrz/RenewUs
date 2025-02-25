@@ -1,17 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:renewus/data/model/appointment.dart';
 import 'package:renewus/data/model/counselor.dart';
 
 /*
-  String id;
-  String counselorEmail;
-  String counselorName;
-  String password;
-  double rating;
-  String introduction;
-  List<String> profiles;
-  List<String> reviews;
-  DateTime createdAt;
+  String? id;
+  String? counselorEmail;
+  String? counselorName;
+  double? rating;
+  int? totalCareer;
+  String? introduction;
+  String? personalOpinion;
+  List<String>? profiles;
+  List<String>? reviews;
+  String? imageUrl;
+  DateTime? createdAt;
+  int? price30Min;
+  int? price50Min;
+
 */
 
 class CounselorRepository {
@@ -31,7 +35,6 @@ class CounselorRepository {
         final map = doc.data();
         final newMap = {'id': doc.id, ...map};
         final dataa = Counselor.fromJson(newMap);
-        print(dataa);
         return dataa;
       }).toList();
     } catch (e) {
@@ -44,17 +47,20 @@ class CounselorRepository {
   Future<bool> insert(
       {required String counselorEmail,
       required String counselorName,
-      required String password,
       required double rating,
+      required int totalCareer,
       required String introduction,
+      required String personalOpinion,
       required List<String> profiles,
       required List<String> reviews,
-      required String imageUrl}) async {
+      required String imageUrl,
+      required int price30Min,
+      required int price50Min}) async {
     try {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
       // 2. 컬렉션 참조 만들기
-      final collectionRef = firestore.collection('posts');
+      final collectionRef = firestore.collection('counselor');
       // 3. 문서참조 만들기
       final docRef = collectionRef.doc();
       // 4. 값 쓰기
@@ -62,10 +68,14 @@ class CounselorRepository {
         'counselorEmail': counselorEmail,
         'counselorName': counselorName,
         'rating': rating,
+        'totalCareer': totalCareer,
         'introduction': introduction,
+        'personalOpinion': personalOpinion,
         'profiles': profiles,
         'reviews': reviews,
         'imageUrl': imageUrl,
+        'price30Min': price30Min,
+        'price50Min': price50Min,
         'createAt': DateTime.now().toIso8601String(),
       });
       return true;
@@ -81,7 +91,7 @@ class CounselorRepository {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
       // 2. 컬렉션 참조 만들기
-      final collectionRef = firestore.collection('posts');
+      final collectionRef = firestore.collection('counselor');
       // 3. 문서참조 만들기
       final docRef = collectionRef.doc(id);
       // 4. 값 불러오기
@@ -100,15 +110,21 @@ class CounselorRepository {
     required String id,
     required String counselorName,
     required String counselorEmail,
+    required double rating,
+    required int totalCareer,
+    required String introduction,
+    required String personalOpinion,
+    required List<String> profiles,
+    required List<String> reviews,
     required String imageUrl,
-    required List<Appointment> appointments,
-    required int chargedMoney,
+    required int price30Min,
+    required int price50Min,
   }) async {
     try {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
       // 2. 컬렉션 참조 만들기
-      final collectionRef = firestore.collection('posts');
+      final collectionRef = firestore.collection('counselor');
       // 3. 문서참조 만들기
       final docRef = collectionRef.doc(id);
       // 4. 값 업데이트
@@ -116,9 +132,15 @@ class CounselorRepository {
       await docRef.update({
         'counselorName': counselorName,
         'counselorEmail': counselorEmail,
+        'rating': rating,
+        'totalCareer': totalCareer,
+        'introduction': introduction,
+        'personalOpinion': personalOpinion,
+        'profiles': profiles.map((e) => e.toString()).toList(),
+        'reviews': reviews.map((e) => e.toString()).toList(),
         'imageUrl': imageUrl,
-        'appointments': appointments.map((e) => e.toJson()).toList(),
-        'chargedMoney': chargedMoney,
+        'price30Min': price30Min,
+        'price50Min': price50Min,
       });
       return true;
     } catch (e) {
@@ -133,7 +155,7 @@ class CounselorRepository {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
       // 2. 컬렉션 참조 만들기
-      final collectionRef = firestore.collection('posts');
+      final collectionRef = firestore.collection('counselor');
       // 3. 문서참조 만들기
       final docRef = collectionRef.doc(id);
       // 4. 값 삭제
@@ -148,7 +170,7 @@ class CounselorRepository {
   Stream<List<Counselor>> postListStream() {
     final firestore = FirebaseFirestore.instance;
     final collectionRef =
-        firestore.collection('posts').orderBy('createAt', descending: true);
+        firestore.collection('counselor').orderBy('createAt', descending: true);
     final stream = collectionRef.snapshots();
 
     // List<Post> 형태로 변경
@@ -165,7 +187,7 @@ class CounselorRepository {
 
   Stream<Counselor?> postStream(String id) {
     final firestore = FirebaseFirestore.instance;
-    final collectionRef = firestore.collection('posts');
+    final collectionRef = firestore.collection('counselor');
     final docRef = collectionRef.doc(id);
     final stream = docRef.snapshots();
     final newstream = stream.map(

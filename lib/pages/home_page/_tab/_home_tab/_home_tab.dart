@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:renewus/data/repository/counselor_repository.dart';
 import 'package:renewus/widgets/custom_app_bar_search.dart';
 
 class HomeTab extends StatelessWidget {
-  const HomeTab({super.key});
+  HomeTab({super.key});
+
+  final counselorData = CounselorRepository().getAll();
 
   @override
   Widget build(BuildContext context) {
@@ -48,13 +51,22 @@ class HomeTab extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20),
-            Expanded(
-              child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return mainDescription(context);
-                },
-              ),
+            FutureBuilder(
+              future: counselorData,
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Expanded(
+                    child: ListView.builder(
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        return Text(snapshot.data![index].counselorEmail);
+                      },
+                    ),
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
             ),
           ],
         ),

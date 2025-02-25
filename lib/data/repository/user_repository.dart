@@ -13,8 +13,8 @@ import 'package:renewus/data/model/user.dart';
   DateTime createdAt;
 */
 
-class PostRepository {
-  Future<List<Counselor>?> getAll() async {
+class UserReporisotry {
+  Future<List<User>?> getAll() async {
     try {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
@@ -28,7 +28,7 @@ class PostRepository {
       return docs.map((doc) {
         final map = doc.data();
         final newMap = {'id': doc.id, ...map};
-        return Counselor.fromJson(newMap);
+        return User.fromJson(newMap);
       }).toList();
     } catch (e) {
       print(e);
@@ -53,7 +53,6 @@ class PostRepository {
       await docRef.set({
         'userEmail': userEmail,
         'userName': userName,
-        'password': password,
         'imageUrl': imageUrl,
         'appointments': [],
         'chargedMoney': 0,
@@ -67,7 +66,7 @@ class PostRepository {
   }
 
   // 2. Read
-  Future<Counselor?> getOne(String id) async {
+  Future<User?> getOne(String id) async {
     try {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
@@ -77,7 +76,7 @@ class PostRepository {
       final docRef = collectionRef.doc(id);
       // 4. 값 불러오기
       final doc = await docRef.get();
-      return Counselor.fromJson(
+      return User.fromJson(
         {'id': doc.id, ...doc.data()!},
       );
     } catch (e) {
@@ -136,7 +135,7 @@ class PostRepository {
     }
   }
 
-  Stream<List<Counselor>> postListStream() {
+  Stream<List<User>> postListStream() {
     final firestore = FirebaseFirestore.instance;
     final collectionRef =
         firestore.collection('posts').orderBy('createAt', descending: true);
@@ -145,7 +144,7 @@ class PostRepository {
     // List<Post> 형태로 변경
     final newStream = stream.map((event) {
       return event.docs.map((e) {
-        return Counselor.fromJson({
+        return User.fromJson({
           'id': e.id,
           ...e.data(),
         });
@@ -154,7 +153,7 @@ class PostRepository {
     return newStream;
   }
 
-  Stream<Counselor?> postStream(String id) {
+  Stream<User?> postStream(String id) {
     final firestore = FirebaseFirestore.instance;
     final collectionRef = firestore.collection('posts');
     final docRef = collectionRef.doc(id);
@@ -164,7 +163,7 @@ class PostRepository {
         if (event.data() == null) {
           return null;
         }
-        return Counselor.fromJson({
+        return User.fromJson({
           'id': event.id,
           ...event.data()!,
         });

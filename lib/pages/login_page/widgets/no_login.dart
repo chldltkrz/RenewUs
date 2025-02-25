@@ -43,11 +43,14 @@ class _NoLoginState extends State<NoLogin> {
               Text('한글, 영문, 숫자를 포함하여 4~15자리까지 가능합니다.',
                   style: TextStyle(color: Colors.grey)),
               SizedBox(height: 24),
-              SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () => {},
-                  child: Text('시작하기'),
+              Spacer(),
+              SafeArea(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: ElevatedButton(
+                    onPressed: () => {},
+                    child: Text('시작하기'),
+                  ),
                 ),
               ),
             ],

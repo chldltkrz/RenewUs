@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:renewus/data/model/appointment.dart';
-import 'package:renewus/data/model/user.dart';
+import 'package:renewus/data/model/counselor.dart';
 
 /*
   String id;
@@ -14,22 +14,25 @@ import 'package:renewus/data/model/user.dart';
   DateTime createdAt;
 */
 
-class PostRepository {
+class CounselorRepository {
   Future<List<Counselor>?> getAll() async {
     try {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
       // 2. 컬렉션 참조 만들기
-      final collectionRef = firestore.collection('posts');
+      final collectionRef = firestore.collection('counselor');
       // 3. 값 불러오기
       final result = await collectionRef.get();
 
       // 4. 값 가져오기
       final docs = result.docs;
+
       return docs.map((doc) {
         final map = doc.data();
         final newMap = {'id': doc.id, ...map};
-        return Counselor.fromJson(newMap);
+        final dataa = Counselor.fromJson(newMap);
+        print(dataa);
+        return dataa;
       }).toList();
     } catch (e) {
       print(e);
@@ -58,7 +61,6 @@ class PostRepository {
       await docRef.set({
         'counselorEmail': counselorEmail,
         'counselorName': counselorName,
-        'password': password,
         'rating': rating,
         'introduction': introduction,
         'profiles': profiles,
@@ -96,8 +98,8 @@ class PostRepository {
   // 3. Update
   Future<bool> update({
     required String id,
-    required String usereName,
-    required String userEmail,
+    required String counselorName,
+    required String counselorEmail,
     required String imageUrl,
     required List<Appointment> appointments,
     required int chargedMoney,
@@ -112,8 +114,8 @@ class PostRepository {
       // 4. 값 업데이트
       // update 와 set의 차이점 -> set은 도큐먼트가 없으면 생성함
       await docRef.update({
-        'userName': usereName,
-        'userEmail': userEmail,
+        'counselorName': counselorName,
+        'counselorEmail': counselorEmail,
         'imageUrl': imageUrl,
         'appointments': appointments.map((e) => e.toJson()).toList(),
         'chargedMoney': chargedMoney,

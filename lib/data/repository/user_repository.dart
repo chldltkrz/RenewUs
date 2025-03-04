@@ -1,16 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:renewus/data/model/appointment.dart';
+import 'package:renewus/data/model/counselor.dart';
 import 'package:renewus/data/model/user.dart';
 
 /*
   String id;
-  String userEmail;
-  String userName;
-  String password;
-  List<Appointment> appointments;
-  String imageUrl;
-  int chargedMoney;
-  DateTime createdAt;
+  String? userEmail;
+  String? userName;
+  List<Appointment>? appointments;
+  List<Counselor>? favoriteCounselors;
+  String? imageUrl;
+  int? chargedMoney;
+  bool? isCounselor;
+  DateTime? createdAt;
 */
 
 class UserReporisotry {
@@ -19,7 +21,7 @@ class UserReporisotry {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
       // 2. 컬렉션 참조 만들기
-      final collectionRef = firestore.collection('posts');
+      final collectionRef = firestore.collection('user');
       // 3. 값 불러오기
       final result = await collectionRef.get();
 
@@ -37,25 +39,32 @@ class UserReporisotry {
   }
 
   // 1. Create
-  Future<bool> insert(
-      {required String userEmail,
-      required String userName,
-      required String password,
-      required String imageUrl}) async {
+  Future<bool> insert({
+    required String userEmail,
+    required String userName,
+    required List<Appointment> appointments,
+    required List<Counselor> favoriteCounselors,
+    required int chargedMoney,
+    required String imageUrl,
+    required bool isCounselor,
+  }) async {
     try {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
       // 2. 컬렉션 참조 만들기
-      final collectionRef = firestore.collection('posts');
+      final collectionRef = firestore.collection('user');
       // 3. 문서참조 만들기
       final docRef = collectionRef.doc();
       // 4. 값 쓰기
       await docRef.set({
         'userEmail': userEmail,
         'userName': userName,
-        'imageUrl': imageUrl,
-        'appointments': [],
+        'appointments': appointments.map((e) => e.toJson()).toList(),
+        'favoriteCounselors':
+            favoriteCounselors.map((e) => e.toJson()).toList(),
         'chargedMoney': 0,
+        'imageUrl': imageUrl,
+        'isCounselor': isCounselor,
         'createAt': DateTime.now().toIso8601String(),
       });
       return true;
@@ -71,7 +80,7 @@ class UserReporisotry {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
       // 2. 컬렉션 참조 만들기
-      final collectionRef = firestore.collection('posts');
+      final collectionRef = firestore.collection('user');
       // 3. 문서참조 만들기
       final docRef = collectionRef.doc(id);
       // 4. 값 불러오기
@@ -90,15 +99,17 @@ class UserReporisotry {
     required String id,
     required String usereName,
     required String userEmail,
-    required String imageUrl,
     required List<Appointment> appointments,
+    required List<Counselor> favoriteCounselors,
+    required String imageUrl,
     required int chargedMoney,
+    required bool isCounselor,
   }) async {
     try {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
       // 2. 컬렉션 참조 만들기
-      final collectionRef = firestore.collection('posts');
+      final collectionRef = firestore.collection('user');
       // 3. 문서참조 만들기
       final docRef = collectionRef.doc(id);
       // 4. 값 업데이트
@@ -106,9 +117,12 @@ class UserReporisotry {
       await docRef.update({
         'userName': usereName,
         'userEmail': userEmail,
-        'imageUrl': imageUrl,
         'appointments': appointments.map((e) => e.toJson()).toList(),
+        'favoriteCounselors':
+            favoriteCounselors.map((e) => e.toJson()).toList(),
+        'imageUrl': imageUrl,
         'chargedMoney': chargedMoney,
+        'isCounselor': isCounselor,
       });
       return true;
     } catch (e) {
@@ -123,7 +137,7 @@ class UserReporisotry {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
       // 2. 컬렉션 참조 만들기
-      final collectionRef = firestore.collection('posts');
+      final collectionRef = firestore.collection('user');
       // 3. 문서참조 만들기
       final docRef = collectionRef.doc(id);
       // 4. 값 삭제
@@ -138,7 +152,7 @@ class UserReporisotry {
   Stream<List<User>> postListStream() {
     final firestore = FirebaseFirestore.instance;
     final collectionRef =
-        firestore.collection('posts').orderBy('createAt', descending: true);
+        firestore.collection('user').orderBy('createAt', descending: true);
     final stream = collectionRef.snapshots();
 
     // List<Post> 형태로 변경
@@ -155,7 +169,7 @@ class UserReporisotry {
 
   Stream<User?> postStream(String id) {
     final firestore = FirebaseFirestore.instance;
-    final collectionRef = firestore.collection('posts');
+    final collectionRef = firestore.collection('user');
     final docRef = collectionRef.doc(id);
     final stream = docRef.snapshots();
     final newstream = stream.map(

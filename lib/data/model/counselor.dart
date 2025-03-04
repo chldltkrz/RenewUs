@@ -1,3 +1,5 @@
+import 'package:renewus/data/model/appointment.dart';
+
 class Counselor {
   String? id;
   String? counselorEmail;
@@ -8,10 +10,12 @@ class Counselor {
   String? personalOpinion;
   List<String>? profiles;
   List<String>? reviews;
+  List<Appointment>? appointments;
   String? imageUrl;
   DateTime? createdAt;
   int? price30Min;
   int? price50Min;
+  bool? isCounselor;
 
   Counselor({
     required this.id,
@@ -23,10 +27,12 @@ class Counselor {
     required this.personalOpinion,
     required this.profiles,
     required this.reviews,
+    required this.appointments,
     required this.imageUrl,
     required this.createdAt,
     required this.price30Min,
     required this.price50Min,
+    required this.isCounselor,
   });
 
   Counselor.fromJson(Map<String, dynamic> json)
@@ -48,12 +54,18 @@ class Counselor {
                   .map((item) => item.toString())
                   .toList()
               : [], // Default to empty list if it's not a List
+          appointments: json['appointments'] is List
+              ? (json['appointments'] as List<dynamic>)
+                  .map((item) => Appointment.fromJson(item))
+                  .toList()
+              : [], // Default to empty list if it's not a List
           imageUrl: json['imageUrl'],
           createdAt: json['createdAt'] != null
               ? DateTime.parse(json['createdAt'])
               : null,
           price30Min: (json['price30Min'] as num?)?.toInt(),
           price50Min: (json['price50Min'] as num?)?.toInt(),
+          isCounselor: json['isCounselor'],
         );
 
   Map<String, dynamic> toJson() => {
@@ -66,9 +78,11 @@ class Counselor {
         'personalOpinion': personalOpinion,
         'profiles': profiles,
         'reviews': reviews,
+        'appointments': appointments?.map((item) => item.toJson()).toList(),
         'createdAt': createdAt?.toIso8601String(),
         'imageUrl': imageUrl,
         'price30Min': price30Min,
         'price50Min': price50Min,
+        'isCounselor': isCounselor,
       };
 }

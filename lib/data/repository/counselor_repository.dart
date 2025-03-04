@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:renewus/data/model/appointment.dart';
 import 'package:renewus/data/model/counselor.dart';
 
 /*
@@ -11,11 +12,12 @@ import 'package:renewus/data/model/counselor.dart';
   String? personalOpinion;
   List<String>? profiles;
   List<String>? reviews;
+  List<Appointment>? appointments;
   String? imageUrl;
   DateTime? createdAt;
   int? price30Min;
   int? price50Min;
-
+  bool? isCounselor;
 */
 
 class CounselorRepository {
@@ -53,9 +55,11 @@ class CounselorRepository {
       required String personalOpinion,
       required List<String> profiles,
       required List<String> reviews,
+      required List<Appointment> appointments,
       required String imageUrl,
       required int price30Min,
-      required int price50Min}) async {
+      required int price50Min,
+      required bool isCounselor}) async {
     try {
       // 1. 파이어스토어 인스턴스 가지고 오기
       final firestore = FirebaseFirestore.instance;
@@ -73,9 +77,11 @@ class CounselorRepository {
         'personalOpinion': personalOpinion,
         'profiles': profiles,
         'reviews': reviews,
+        'appointments': appointments.map((e) => e.toJson()).toList(),
         'imageUrl': imageUrl,
         'price30Min': price30Min,
         'price50Min': price50Min,
+        'isCounselor': isCounselor,
         'createAt': DateTime.now().toIso8601String(),
       });
       return true;
@@ -116,9 +122,11 @@ class CounselorRepository {
     required String personalOpinion,
     required List<String> profiles,
     required List<String> reviews,
+    required List<Appointment>? appointments,
     required String imageUrl,
     required int price30Min,
     required int price50Min,
+    required bool isCounselor,
   }) async {
     try {
       // 1. 파이어스토어 인스턴스 가지고 오기
@@ -138,9 +146,11 @@ class CounselorRepository {
         'personalOpinion': personalOpinion,
         'profiles': profiles.map((e) => e.toString()).toList(),
         'reviews': reviews.map((e) => e.toString()).toList(),
+        'appointments': appointments?.map((e) => e.toJson()).toList(),
         'imageUrl': imageUrl,
         'price30Min': price30Min,
         'price50Min': price50Min,
+        'isCounselor': isCounselor,
       });
       return true;
     } catch (e) {

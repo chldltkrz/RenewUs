@@ -54,10 +54,13 @@ class CounselorDetail extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: Container(
                   width: double.infinity,
-                  height: 80,
+                  height: 90,
                   color: Colors.blue[100],
-                  child:
-                      Text("\n*리뉴어스 상담사는 윤리규정에 의거하여 내담자의 사생활과 비밀보호를 철저히 보장합니다"),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                        "\n*리뉴어스 상담사는 윤리규정에 의거하여 내담자의 사생활과 비밀보호를 철저히 보장합니다"),
+                  ),
                 ),
               ),
               SizedBox(height: 15),

@@ -45,7 +45,7 @@ class HomeTab extends StatelessWidget {
               children: [
                 filterCategory(true, '초기화', false),
                 SizedBox(width: 10),
-                filterCategory(false, '경력순', true),
+                filterCategory(false, '경력순', false),
                 SizedBox(width: 10),
                 filterCategory(false, '바로상담', false),
                 SizedBox(width: 10),

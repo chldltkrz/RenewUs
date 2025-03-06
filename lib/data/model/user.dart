@@ -26,23 +26,30 @@ class User {
 
   User.fromJson(Map<String, dynamic> json)
       : this(
-          id: json['id'],
-          userEmail: json['userEmail'],
-          userName: json['userName'],
-          appointments: json['appointments'] is List
-              ? (json['appointments'] as List<dynamic>)
-                  .map((item) => Appointment.fromJson(item))
-                  .toList()
-              : [], // Default to empty list if it's not a List
-          favoriteCounselors: json['favoriteCounselors'] is List
-              ? (json['favoriteCounselors'] as List<dynamic>)
+          id: json['id'] as String?,
+          userEmail: json['userEmail'] as String?,
+          userName: json['userName'] as String?,
+          appointments:
+              (json['appointments'] != null && json['appointments'] is List)
+                  ? (json['appointments'] as List)
+                      .map((item) => Appointment.fromJson(item))
+                      .toList()
+                  : [], // Default to empty list if null
+          favoriteCounselors: (json['favoriteCounselors'] != null &&
+                  json['favoriteCounselors'] is List)
+              ? (json['favoriteCounselors'] as List)
                   .map((item) => Counselor.fromJson(item))
                   .toList()
-              : [], // Default to empty list if it's not a List
-          imageUrl: json['imageUrl'],
-          chargedMoney: json['chargedMoney'],
-          isCounselor: json['isCounselor'],
-          createdAt: DateTime.parse(json['createdAt']),
+              : [], // Default to empty list if null
+          imageUrl: json['imageUrl'] as String? ??
+              '', // Default to empty string if null
+          chargedMoney:
+              json['chargedMoney'] as int? ?? 0, // Default to 0 if null
+          isCounselor:
+              json['isCounselor'] as bool? ?? false, // Default to false if null
+          createdAt: json['createdAt'] != null
+              ? DateTime.tryParse(json['createdAt'])
+              : null, // Avoid parsing errors
         );
 
   Map<String, dynamic> toJson() => {

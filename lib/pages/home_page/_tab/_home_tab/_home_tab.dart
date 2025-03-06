@@ -31,9 +31,12 @@ class HomeTab extends StatelessWidget {
                   child: Row(
                     children: [
                       selectCategory(Colors.blue[200]!, Icons.home, '아이양육'),
-                      selectCategory(Colors.green[200]!, Icons.home, '의사소통'),
-                      selectCategory(Colors.yellow[200]!, Icons.home, '재정관련'),
-                      selectCategory(Colors.red[200]!, Icons.home, '성생활'),
+                      selectCategory(
+                          Colors.green[200]!, Icons.task_alt, '의사소통'),
+                      selectCategory(Colors.yellow[200]!,
+                          Icons.attach_money_rounded, '재정관련'),
+                      selectCategory(
+                          Colors.red[200]!, Icons.ac_unit_rounded, '성생활'),
                       selectCategory(Colors.green[200]!, Icons.home, '이혼이별'),
                     ],
                   ),

@@ -94,6 +94,29 @@ class UserReporisotry {
     }
   }
 
+  Future<User?> searchUser(String userName) async {
+    try {
+      final firestore = FirebaseFirestore.instance;
+      final collectionRef = firestore.collection('user');
+      final query =
+          await collectionRef.where('userName', isEqualTo: userName).get();
+
+      if (query.docs.isEmpty) {
+        return null;
+      }
+
+      final doc = query.docs.first;
+
+      return User.fromJson({
+        'id': doc.id,
+        ...doc.data(), // ✅ Correctly spreading the user data
+      });
+    } catch (e) {
+      print("Error in searchUser: $e");
+      return null;
+    }
+  }
+
   // 3. Update
   Future<bool> update({
     required String id,

@@ -33,8 +33,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: '홈'),
           BottomNavigationBarItem(
-              icon: ImageIcon(
-                  AssetImage('assets/icons/tabler-icon-clipboard-heart.png')),
+              icon: Image(
+                  image: AssetImage(
+                      'assets/icons/tabler-icon-clipboard-heart.png')),
               label: '심리분석'),
           BottomNavigationBarItem(
               icon: ImageIcon(

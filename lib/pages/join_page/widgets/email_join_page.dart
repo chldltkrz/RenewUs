@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:renewus/core/snackbar_util.dart';
 import 'package:renewus/pages/home_page/home_page.dart';
 import 'package:renewus/pages/join_page/join_page.dart';
+import 'package:renewus/pages/join_page/widgets/nickname_join_page.dart';
+import 'package:renewus/widgets/custom_app_bar.dart';
 
 class EmailJoinPage extends StatefulWidget {
   const EmailJoinPage({super.key});
@@ -27,9 +29,7 @@ class _EmailJoinPageState extends State<EmailJoinPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('이메일로 회원가입'),
-      ),
+      appBar: CustomAppBar('이메일로 회원가입'),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Column(
@@ -78,20 +78,14 @@ class _EmailJoinPageState extends State<EmailJoinPage> {
                         SnackbarUtil.showSnackBar(context, '비밀번호가 일치하지 않습니다');
                         return;
                       }
-                      try {
-                        UserCredential cred = await JoinPage.signUp(
-                            _emailController.value.text.trim(),
-                            _passwordController.value.text.trim());
-                        if (cred.user != null) {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => HomePage()));
-                        }
-                      } catch (e) {
-                        SnackbarUtil.showSnackBar(
-                            context, '회원가입에 실패하였습니다' + e.toString());
-                      }
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => NicknameJoinPage(
+                                    email: _emailController.value.text.trim(),
+                                    password:
+                                        _passwordController.value.text.trim(),
+                                  )));
                     },
                     child: Text('회원가입'),
                   )),

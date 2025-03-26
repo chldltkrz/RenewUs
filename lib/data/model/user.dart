@@ -3,6 +3,7 @@ import 'package:renewus/data/model/counselor.dart';
 
 class User {
   String? id;
+  String? userId;
   String? userEmail;
   String? userName;
   List<Appointment>? appointments;
@@ -14,6 +15,7 @@ class User {
 
   User({
     required this.id,
+    required this.userId,
     required this.userEmail,
     required this.userName,
     required this.appointments,
@@ -27,6 +29,7 @@ class User {
   User.fromJson(Map<String, dynamic> json)
       : this(
           id: json['id'] as String?,
+          userId: json['userId'] as String?,
           userEmail: json['userEmail'] as String?,
           userName: json['userName'] as String?,
           appointments:
@@ -54,6 +57,7 @@ class User {
 
   Map<String, dynamic> toJson() => {
         'id': id,
+        'userId': userId,
         'userEmail': userEmail,
         'userName': userName,
         'appointments': appointments,

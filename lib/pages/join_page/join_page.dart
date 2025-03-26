@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:renewus/core/snackbar_util.dart';
+import 'package:renewus/data/repository/user_repository.dart';
 import 'package:renewus/pages/join_page/widgets/email_join_page.dart';
 import 'package:renewus/pages/login_page/login_page.dart';
 import 'package:renewus/pages/login_page/widgets/logo.dart';
@@ -9,10 +10,42 @@ import 'package:renewus/pages/login_page/widgets/logo.dart';
 class JoinPage extends StatelessWidget {
   const JoinPage({super.key});
 
-  static Future<UserCredential> signUp(String email, String password) async {
+  static Future<bool> signInAnonymously(String userName) async {
     try {
-      return await FirebaseAuth.instance
+      return await UserReporisotry().insert(
+        userId: '',
+        userEmail: '',
+        userName: userName,
+        appointments: [],
+        favoriteCounselors: [],
+        chargedMoney: 0,
+        imageUrl: '',
+        isCounselor: false,
+      );
+    } catch (e) {
+      debugPrint('Error: $e');
+      return false;
+    }
+  }
+
+  static Future<UserCredential> signUp(
+      String email, String password, String nickname) async {
+    try {
+      final result = await FirebaseAuth.instance
           .createUserWithEmailAndPassword(email: email, password: password);
+      if (result.user != null) {
+        await UserReporisotry().insert(
+          userId: result.user!.uid,
+          userEmail: email,
+          userName: nickname,
+          appointments: [],
+          favoriteCounselors: [],
+          chargedMoney: 0,
+          imageUrl: '',
+          isCounselor: false,
+        );
+      }
+      return result;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
         print('The password provided is too weak.');
@@ -21,7 +54,7 @@ class JoinPage extends StatelessWidget {
       }
       rethrow;
     } catch (e) {
-      debugPrint('에러');
+      debugPrint('에러' + e.toString());
       rethrow;
     }
   }

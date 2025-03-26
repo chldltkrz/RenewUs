@@ -40,6 +40,7 @@ class UserReporisotry {
 
   // 1. Create
   Future<bool> insert({
+    required String userId,
     required String userEmail,
     required String userName,
     required List<Appointment> appointments,
@@ -57,6 +58,7 @@ class UserReporisotry {
       final docRef = collectionRef.doc();
       // 4. 값 쓰기
       await docRef.set({
+        'userId': userId,
         'userEmail': userEmail,
         'userName': userName,
         'appointments': appointments.map((e) => e.toJson()).toList(),
@@ -106,7 +108,6 @@ class UserReporisotry {
       }
 
       final doc = query.docs.first;
-
       return User.fromJson({
         'id': doc.id,
         ...doc.data(), // ✅ Correctly spreading the user data
@@ -120,6 +121,7 @@ class UserReporisotry {
   // 3. Update
   Future<bool> update({
     required String id,
+    required String userId,
     required String usereName,
     required String userEmail,
     required List<Appointment> appointments,
@@ -138,6 +140,7 @@ class UserReporisotry {
       // 4. 값 업데이트
       // update 와 set의 차이점 -> set은 도큐먼트가 없으면 생성함
       await docRef.update({
+        'userId': userId,
         'userName': usereName,
         'userEmail': userEmail,
         'appointments': appointments.map((e) => e.toJson()).toList(),

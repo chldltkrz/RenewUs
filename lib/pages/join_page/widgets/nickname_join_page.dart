@@ -1,19 +1,24 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:renewus/core/snackbar_util.dart';
-import 'package:renewus/data/model/user.dart';
+import 'package:renewus/data/model/user.dart' as AppUser;
 import 'package:renewus/data/repository/user_repository.dart';
 import 'package:renewus/pages/home_page/home_page.dart';
 import 'package:renewus/pages/join_page/join_page.dart';
+import 'package:renewus/widgets/custom_app_bar.dart';
 
-class NoLogin extends StatefulWidget {
-  const NoLogin({super.key});
+class NicknameJoinPage extends StatefulWidget {
+  final String email;
+  final String password;
+  const NicknameJoinPage(
+      {super.key, required this.email, required this.password});
 
   @override
-  State<NoLogin> createState() => _NoLoginState();
+  State<NicknameJoinPage> createState() => _NicknameJoinPageState();
 }
 
-class _NoLoginState extends State<NoLogin> {
-  final TextEditingController _nicknameController = TextEditingController();
+class _NicknameJoinPageState extends State<NicknameJoinPage> {
+  TextEditingController _nicknameController = TextEditingController();
   bool _isDuplicationChecked = false;
   bool _isDuplication = false;
 
@@ -23,7 +28,7 @@ class _NoLoginState extends State<NoLogin> {
         SnackbarUtil.showSnackBar(context, '닉네임을 입력해주세요');
         return;
       }
-      User? user = await UserReporisotry().searchUser(userName);
+      AppUser.User? user = await UserReporisotry().searchUser(userName);
       setState(() {
         _isDuplication = user != null ? true : false;
       });
@@ -50,9 +55,7 @@ class _NoLoginState extends State<NoLogin> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('가입 없이 바로 시작'),
-      ),
+      appBar: CustomAppBar('이메일로 회원가입'),
       body: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Padding(
@@ -96,19 +99,24 @@ class _NoLoginState extends State<NoLogin> {
                           SnackbarUtil.showSnackBar(context, '중복확인을 해주세요');
                           return;
                         }
-                        bool success = await JoinPage.signInAnonymously(
-                            _nicknameController.text);
-                        if (success) {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const HomePage()),
-                          );
-                        } else {
+
+                        try {
+                          UserCredential cred = await JoinPage.signUp(
+                              widget.email,
+                              widget.password,
+                              _nicknameController.value.text.trim());
+                          if (cred.user != null) {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          }
+                        } catch (e) {
+                          SnackbarUtil.showSnackBar(
+                              context, '회원가입에 실패하였습니다' + e.toString());
                           setState(() {
                             _isDuplicationChecked = false;
                           });
-                          SnackbarUtil.showSnackBar(context, '회원가입에 실패했습니다');
                         }
                       } else {
                         setState(() {

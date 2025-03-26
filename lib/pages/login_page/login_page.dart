@@ -5,6 +5,7 @@ import 'package:renewus/pages/join_page/join_page.dart';
 import 'package:renewus/pages/login_page/widgets/email_login.dart';
 import 'package:renewus/pages/login_page/widgets/logo.dart';
 import 'package:renewus/pages/login_page/widgets/no_login.dart';
+import 'package:renewus/widgets/custom_app_bar.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
@@ -12,6 +13,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: CustomAppBar('닉네임으로 시작하기'),
       body: SafeArea(
         child: SizedBox(
           width: double.infinity,
@@ -30,8 +32,7 @@ class LoginPage extends StatelessWidget {
                       SnackbarUtil.showSnackBar(context, '카카오 로그인은 준비중입니다');
                     },
                     child: Text('카카오로 계속하기',
-                        style:
-                            TextStyle(color: Theme.of(context).primaryColor)),
+                        style: TextStyle(color: Colors.black)),
                   ),
                 ),
                 SizedBox(height: 16),
